@@ -6,7 +6,7 @@
 #    By: lwiedijk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/10/30 16:06:46 by lwiedijk      #+#    #+#                  #
-#    Updated: 2020/12/04 18:35:36 by lwiedijk      ########   odam.nl          #
+#    Updated: 2021/09/01 13:06:17 by lwiedijk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,15 @@ HEADERS = 		libft.h
 OBJECTS = 		ft_atoi.o			\
 	  			ft_bzero.o			\
 	  			ft_calloc.o			\
+				ft_error.o			\
 	  			ft_isalnum.o		\
 	  			ft_isalpha.o		\
 	  			ft_isascii.o		\
 	  			ft_isdigit.o		\
 	  			ft_isprint.o		\
+				ft_iswhitespace.o	\
+				ft_itoa_base_unsigned.o	\
+				ft_itoa_base.o		\
 	  			ft_itoa.o			\
 	  			ft_memccpy.o		\
 	  			ft_memchr.o			\
@@ -48,6 +52,15 @@ OBJECTS = 		ft_atoi.o			\
 	  			ft_substr.o			\
 				ft_tolower.o		\
 				ft_toupper.o		\
+				ft_numlen_base.o	\
+				ft_power.o			\
+				ft_putchar.o		\
+				ft_putnbr.o			\
+				ft_putstr.o			\
+				ft_strcat.o			\
+				ft_strjoin_free.o	\
+				ft_strcmp.o			\
+				ft_strcpy.o			\
 
 BONUS_FILES	=	ft_lstadd_front.o	\
 				ft_lstadd_back.o	\
