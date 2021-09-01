@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/08/27 13:32:35 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/01 13:17:18 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,17 @@ int	main(int ac, char **av)
 {
 	t_stack *stack;
 	int input;
+	int i;
 
-	if (ac != 2)
+	if (ac < 2)
 		ft_error(TEST);
-	input = ft_atoi(av[1]);
-	printf("input from atoi (%d)\n", input);
+	i = 1;
+	while (i < ac)
+	{
+		input = ft_atoi(av[i]);
+		printf("input from atoi [%d] (%d)\n", i, input);
+		i++;
+	}
 	stack = new_stack_node(input);
 	if (!stack)
 		ft_error(MALLOC_FAIL);

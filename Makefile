@@ -6,7 +6,7 @@
 #    By: lwiedijk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/27 11:19:54 by lwiedijk      #+#    #+#                  #
-#    Updated: 2021/08/27 13:30:20 by lwiedijk      ########   odam.nl          #
+#    Updated: 2021/09/01 13:14:16 by lwiedijk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(LIBFT_DIR)
+	make bonus -C $(LIBFT_DIR)
 	cp $(LIBFT_DIR)$(LIBFT) ./
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -L. -lft -o $(NAME)
 
