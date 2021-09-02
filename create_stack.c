@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/02 11:38:55 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/02 14:22:27 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ void	add_node_back(t_stack **lst, t_stack *new)
 
 	if (!lst || !new)
 		return ;
-	last = last_node(*lst);
 	if (!*lst)
 		*lst = new;
 	else
 	{
+		last = last_node(*lst);
 		last->next = new;
 		new->prev = last;
 	}
@@ -88,6 +88,40 @@ void	stack_iter_backward(t_stack *lst, int (*f)(const char *, ...))
 		f("printlist__backward: node[%d], input: (%d)\n", lst->node_num, lst->to_sort);
 		lst = lst->prev;
 	}
+}
+
+void	free_list(t_stack *lst)
+{
+	if (!lst)
+		return ;
+	lst = last_node(lst);
+	while (lst)
+	{
+		free(lst->next);
+		lst = lst->prev;
+	}
+}
+
+int	check_list_is_sorted(t_stack *stack)
+{
+	long int compare1;
+	long int compare2;
+	int i;
+
+	i = 1;
+	//stack = last_node(stack);
+	while (stack->next != NULL)
+	{
+		compare1 = stack->to_sort;
+			stack = stack->next;
+		compare2 = stack->to_sort;
+		if (compare1 > compare2)
+			return (0);
+		printf("running loop [%d]\n", i);
+		i++;
+	}
+	printf("out of loop\n");
+	return (1);
 }
 
 int	main(int ac, char **av)
@@ -122,4 +156,10 @@ int	main(int ac, char **av)
 	}
 	stack_iter_forward(stack, &printf);
 	stack_iter_backward(stack, &printf);
+	if (check_list_is_sorted(stack))
+		printf("list is sorted\n");
+	else
+		printf("not sorted\n");
+	free_list(stack);
+	free(stack);
 }
