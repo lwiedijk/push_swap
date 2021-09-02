@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/01 15:20:36 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/02 11:38:55 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,6 @@
 #include <stdio.h>
 #include "push_swap.h"
 #include "libft/libft.h"
-
-t_stack	*new_stack_node(int input)
-{
-	t_stack	*new;
-
-	new = (t_stack *)malloc(sizeof(t_stack));
-	if (!new)
-		return (NULL);
-	new->sort = input;
-	new->next = NULL;
-	return (new);
-}
-
-t_stack	*is_node_last(t_stack *lst)
-{
-	if (lst == NULL)
-		return (NULL);
-	while (lst->next != NULL)
-	{
-		lst = lst->next;
-	}
-	return (lst);
-}
-
-void	add_node_back(t_stack **lst, t_stack *new)
-{
-	if (!lst || !new)
-		return ;
-	if (!*lst)
-		*lst = new;
-	else
-		is_node_last(*lst)->next = new;
-}
-
 
 void	ft_error(int error_code)
 {
@@ -60,14 +26,67 @@ void	ft_error(int error_code)
 	exit(1);
 }
 
-void	stack_iter(t_stack *lst, int (*f)(const char *, ...))
+t_stack	*new_stack_node(int input, int node_num)
+{
+	t_stack	*new;
+
+	new = (t_stack *)malloc(sizeof(t_stack));
+	if (!new)
+		return (NULL);
+	new->to_sort = input;
+	new->node_num = node_num;
+	new->next = NULL;
+	new->prev = NULL;
+	return (new);
+}
+
+t_stack	*last_node(t_stack *lst)
+{
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+	}
+	return (lst);
+}
+
+void	add_node_back(t_stack **lst, t_stack *new)
+{
+	t_stack *last;
+
+	if (!lst || !new)
+		return ;
+	last = last_node(*lst);
+	if (!*lst)
+		*lst = new;
+	else
+	{
+		last->next = new;
+		new->prev = last;
+	}
+}
+
+void	stack_iter_forward(t_stack *lst, int (*f)(const char *, ...))
 {
 	if (!lst || !f)
 		return ;
 	while (lst)
 	{
-		f("printlist %d\n", lst->sort);
+		f("printlist: node[%d], input: (%d)\n", lst->node_num, lst->to_sort);
 		lst = lst->next;
+	}
+}
+
+void	stack_iter_backward(t_stack *lst, int (*f)(const char *, ...))
+{
+	if (!lst || !f)
+		return ;
+	lst = last_node(lst);
+	while (lst)
+	{
+		f("printlist__backward: node[%d], input: (%d)\n", lst->node_num, lst->to_sort);
+		lst = lst->prev;
 	}
 }
 
@@ -88,19 +107,19 @@ int	main(int ac, char **av)
 		printf("input from atoi [%d] (%d)\n", i, input);
 		if (!stack)
 		{
-			stack = new_stack_node(input);
+			stack = new_stack_node(input, i);
 			if (!stack)
 				ft_error(MALLOC_FAIL);
 		}
 		else
 		{
-			new = new_stack_node(input);
+			new = new_stack_node(input, i);
 			if (!new)
 				ft_error(MALLOC_FAIL);
 			add_node_back(&stack, new);
 		}
 		i++;
 	}
-	stack_iter(stack, printf);
-	
+	stack_iter_forward(stack, &printf);
+	stack_iter_backward(stack, &printf);
 }
