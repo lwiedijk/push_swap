@@ -6,13 +6,15 @@
 #    By: lwiedijk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/27 11:19:54 by lwiedijk      #+#    #+#                  #
-#    Updated: 2021/09/01 13:14:16 by lwiedijk      ########   odam.nl          #
+#    Updated: 2021/09/02 15:02:24 by lwiedijk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 HEADERS = push_swap.h
-SRCS = create_stack.c
+SRCS = create_stack.c instructions_1.c \
+nodes.c 
+
 OBJS_DIR = objs/
 _OBJS = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJS_DIR), $(_OBJS))
