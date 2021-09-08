@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 14:36:02 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/08 11:08:49 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/08 14:20:32 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	sa(t_stack *stack_a)
 {
-	long int temp;
+	long int	temp;
 	
 	if (stack_a->next)
 	{
@@ -28,7 +28,7 @@ void	sa(t_stack *stack_a)
 
 void	sb(t_stack *stack_b)
 {
-	long int temp;
+	long int	temp;
 	
 	if (stack_b && stack_b->next)
 	{
@@ -41,7 +41,7 @@ void	sb(t_stack *stack_b)
 
 void	ss(t_stack *stack_a, t_stack *stack_b)
 {
-	long int temp;
+	long int	temp;
 
 	if (stack_b && stack_a)
 	{
@@ -52,4 +52,30 @@ void	ss(t_stack *stack_a, t_stack *stack_b)
 	write(1, "ss\n", 3);
 }
 
+void	pa(t_stack *stack_a, t_stack *stack_b)
+{
+	long int	temp;
+	t_stack		*new_node;
 
+	if (stack_b)
+	{
+		temp = stack_b->to_sort;
+		new_node = new_stack_node(temp);
+		add_node_front(&stack_a, new_node);
+	}
+	write(1, "pa\n", 3);
+}
+
+t_stack	*pb(t_stack *stack_a, t_stack *stack_b)
+{
+	long int	temp;
+
+	temp = stack_a->to_sort;
+
+	//remove that node
+	del_first_node(&stack_a);
+	stack_b = new_stack_node(temp);
+	if (!stack_b)
+		ft_error(MALLOC_FAIL);
+	return (stack_b);
+}

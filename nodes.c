@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 15:00:16 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/02 15:04:09 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/08 14:22:42 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include "push_swap.h"
 
-t_stack	*new_stack_node(int input, int node_num)
+t_stack	*new_stack_node(long int input)
 {
 	t_stack	*new;
 
@@ -22,7 +22,6 @@ t_stack	*new_stack_node(int input, int node_num)
 	if (!new)
 		return (NULL);
 	new->to_sort = input;
-	new->node_num = node_num;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
@@ -55,13 +54,23 @@ void	add_node_back(t_stack **lst, t_stack *new)
 	}
 }
 
+void	add_node_front(t_stack **lst, t_stack *new)
+{
+	if (!lst || !new)
+		return ;
+	new->next = (*lst);
+	(*lst) = new;
+	new->next->prev = new;
+}
+
+
 void	stack_iter_forward(t_stack *lst, int (*f)(const char *, ...))
 {
 	if (!lst || !f)
 		return ;
 	while (lst)
 	{
-		f("printlist: node[%d], input: (%d)\n", lst->node_num, lst->to_sort);
+		f("printlist: input: (%d)\n", lst->to_sort);
 		lst = lst->next;
 	}
 }
@@ -73,7 +82,18 @@ void	stack_iter_backward(t_stack *lst, int (*f)(const char *, ...))
 	lst = last_node(lst);
 	while (lst)
 	{
-		f("printlist__backward: node[%d], input: (%d)\n", lst->node_num, lst->to_sort);
+		f("printlist__backward: input: (%d)\n", lst->to_sort);
 		lst = lst->prev;
 	}
+}
+
+void	del_first_node(t_stack **lst)
+{
+	t_stack *temp;
+
+	temp = *lst;
+	if (!*lst)
+		return ;
+	*lst = (*lst)->next;
+	free(temp);
 }
