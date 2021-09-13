@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/08 14:19:51 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/13 14:30:52 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	check_list_is_sorted(t_stack *stack)
 	int i;
 
 	i = 1;
+	if (!stack)
+		return (0);
 	while (stack->next != NULL)
 	{
 		compare1 = stack->to_sort;
@@ -96,22 +98,37 @@ int	main(int ac, char **av)
 	}
 	//new = new_stack_node(8);
 	//add_node_front(&stack_a, new);
-	stack_iter_forward(stack_a, &printf);
-	stack_iter_backward(stack_a, &printf);
+	print_stack_list_forward(stack_a, &printf, 'a');
+	print_stack_list_forward(stack_b, &printf, 'b');
+	//stack_iter_backward(stack_a, &printf);
+	//if (check_list_is_sorted(stack_a))
+	//	return (printf("list is sorted\n"));
+	//printf("not sorted\n");
+
+	//sa(stack_a);
+	//print_stack_list_forward(stack_a, &printf, 'a');
+	//print_stack_list_forward(stack_b, &printf, 'b');
+	//sb(stack_b);
+	//ss(stack_a, stack_b);
+	//pa(stack_a, stack_b);
+
+	pb(&stack_a, &stack_b);
+	printf("stack_a in create_stack = [%p]\n", stack_a);
+	pb(&stack_a, &stack_b);
+	print_stack_list_forward(stack_a, &printf, 'a');
+	print_stack_list_forward(stack_b, &printf, 'b');
+	ra(&stack_a);
+	print_stack_list_forward(stack_a, &printf, 'a');
+	print_stack_list_forward(stack_b, &printf, 'b');
 	if (check_list_is_sorted(stack_a))
 		return (printf("list is sorted\n"));
-	printf("not sorted\n");
-	sa(stack_a);
-	sb(stack_b);
-	ss(stack_a, stack_b);
-	pa(stack_a, stack_b);
-	stack_b = pb(stack_a, stack_b);
-	stack_iter_forward(stack_a, &printf);
-	if (check_list_is_sorted(stack_a))
-		return (printf("list is sorted\n"));
-	printf("not sorted\n");
+	return (printf("not sorted or stack_a is empty\n"));
 	
 	free_list(stack_a);
 	free(stack_a);
+	free_list(stack_b);
+	if (stack_b)
+		free(stack_b);
 	//system("leaks push_swap");
+	//exit(0);
 }

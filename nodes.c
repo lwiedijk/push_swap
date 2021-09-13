@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 15:00:16 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/08 14:22:42 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/13 11:08:17 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,23 @@ void	add_node_front(t_stack **lst, t_stack *new)
 	new->next->prev = new;
 }
 
+void	print_stack_list_forward(t_stack *lst, int (*f)(const char *, ...), char stack_char)
+{
+	int i;
+
+	i = 0;
+	if (!lst || !f)
+	{
+		printf("No stack_%c to print\n", stack_char);
+		return ;
+	}
+	while (lst)
+	{
+		f("node[%d] of stack_%c: (%d)\n", i, stack_char, lst->to_sort);
+		lst = lst->next;
+		i++;
+	}
+}
 
 void	stack_iter_forward(t_stack *lst, int (*f)(const char *, ...))
 {

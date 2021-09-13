@@ -6,17 +6,18 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 14:36:02 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/08 14:20:32 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/13 14:17:51 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
+#include <stdio.h>
 
 void	sa(t_stack *stack_a)
 {
 	long int	temp;
-	
+
 	if (stack_a->next)
 	{
 		temp = stack_a->to_sort;
@@ -29,7 +30,7 @@ void	sa(t_stack *stack_a)
 void	sb(t_stack *stack_b)
 {
 	long int	temp;
-	
+
 	if (stack_b && stack_b->next)
 	{
 		temp = stack_b->to_sort;
@@ -66,16 +67,27 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 	write(1, "pa\n", 3);
 }
 
-t_stack	*pb(t_stack *stack_a, t_stack *stack_b)
+void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	long int	temp;
+	t_stack	*last;
 
-	temp = stack_a->to_sort;
-
-	//remove that node
-	del_first_node(&stack_a);
-	stack_b = new_stack_node(temp);
-	if (!stack_b)
-		ft_error(MALLOC_FAIL);
-	return (stack_b);
+	if (*stack_a)
+	{
+		last = last_node(*stack_b);
+		if (last)
+		{
+			last->next = *stack_a;
+			*stack_a = (*stack_a)->next;
+			last->next->next = NULL;
+			last->next->prev = last->next;
+		}
+		else
+		{
+			*stack_b = *stack_a;
+			*stack_a = (*stack_a)->next;
+			(*stack_b)->prev = NULL;
+			(*stack_b)->next = NULL;
+		}
+	}
+	write(1, "pb\n", 3);
 }
