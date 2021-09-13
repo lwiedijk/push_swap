@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/27 09:27:21 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/08 14:19:15 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/13 11:08:29 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,19 @@ t_stack	*new_stack_node(long int input);
 t_stack	*last_node(t_stack *lst);
 void	add_node_back(t_stack **lst, t_stack *new);
 void	add_node_front(t_stack **lst, t_stack *new);
+void	print_stack_list_forward(t_stack *lst, int (*f)(const char *, ...), char stack_char);
 void	stack_iter_forward(t_stack *lst, int (*f)(const char *, ...));
 void	stack_iter_backward(t_stack *lst, int (*f)(const char *, ...));
+void	del_first_node(t_stack **lst);
 
 /* instructions_1.c */
 void	sa(t_stack *stack);
 void	sb(t_stack *stack_b);
 void	ss(t_stack *stack_a, t_stack *stack_b);
 void	pa(t_stack *stack_a, t_stack *stack_b);
-t_stack	*pb(t_stack *stack_a, t_stack *stack_b);
-void	del_first_node(t_stack **lst);
+void	pb(t_stack **stack_a, t_stack **stack_b);
 
+/* instructions_2.c */
+void	ra(t_stack **stack_a);
 
 
