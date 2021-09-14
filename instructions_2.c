@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/13 09:31:11 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/13 14:27:58 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/14 11:28:50 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,20 @@ void	ra(t_stack **stack_a)
 		last->next->next = NULL;
 	}
 	write(1, "ra\n", 3);
+}
+
+void	rb(t_stack **stack_b)
+{
+	t_stack *last;
+
+	if (*stack_b && (*stack_b)->next)
+	{
+		last = last_node(*stack_b);
+		last->next = *stack_b;
+		*stack_b = (*stack_b)->next;
+		(*stack_b)->prev = NULL;
+		last->next->next = NULL;
+		last->next->prev = last->next;
+	}
+	write(1, "rb\n", 3);
 }

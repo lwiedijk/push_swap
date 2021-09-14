@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 14:36:02 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/13 14:17:51 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/14 13:03:56 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,15 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 		{
 			last->next = *stack_a;
 			*stack_a = (*stack_a)->next;
+			(*stack_a)->prev = NULL;
 			last->next->next = NULL;
-			last->next->prev = last->next;
+			last->prev = last->next;
 		}
 		else
 		{
 			*stack_b = *stack_a;
 			*stack_a = (*stack_a)->next;
+			(*stack_a)->prev = NULL;
 			(*stack_b)->prev = NULL;
 			(*stack_b)->next = NULL;
 		}
