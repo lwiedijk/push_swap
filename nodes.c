@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 15:00:16 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/13 11:08:17 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/14 11:07:27 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,17 @@ void	add_node_back(t_stack **lst, t_stack *new)
 		*lst = new;
 	else
 	{
+		//printf("head = [%p]\n", *lst);
 		last = last_node(*lst);
+		
+		//printf("last = [%p]\n", last);
+		//printf("last_nodes 'next' = [%p]\n", last->next);
+		//printf("last_nodes 'prev' = [%p]\n", last->prev);
+
 		last->next = new;
+		//printf("last_nodes 'next' new = [%p]\n", last->next);
 		new->prev = last;
+		//printf("last_nodes 'prev' new = [%p]\n", new->prev);
 	}
 }
 
