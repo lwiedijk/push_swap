@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/13 09:31:11 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/15 14:34:24 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/15 14:37:16 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	rrb(t_stack **stack_b, int rrr_flag)
 	
 	}
 	if (!rrr_flag)
-		write(1, "rra\n", 4);
+		write(1, "rrb\n", 4);
 }
 
 
