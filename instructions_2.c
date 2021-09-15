@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/13 09:31:11 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/15 14:37:16 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/15 14:53:05 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,9 @@ void	rrb(t_stack **stack_b, int rrr_flag)
 		write(1, "rrb\n", 4);
 }
 
-
+void	rrr(t_stack **stack_a, t_stack **stack_b)
+{
+	rra(stack_a, TRUE);
+	rrb(stack_b, TRUE);
+	write(1, "rrr\n", 4);
+}
