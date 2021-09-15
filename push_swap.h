@@ -6,9 +6,15 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/27 09:27:21 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/13 11:08:29 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/15 14:46:52 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# define TRUE 1
+# define FALSE 0
 
 typedef struct s_stack
 {
@@ -34,6 +40,7 @@ t_stack	*last_node(t_stack *lst);
 void	add_node_back(t_stack **lst, t_stack *new);
 void	add_node_front(t_stack **lst, t_stack *new);
 void	print_stack_list_forward(t_stack *lst, int (*f)(const char *, ...), char stack_char);
+void	print_stack_list_backward(t_stack *lst, int (*f)(const char *, ...), char stack_char);
 void	stack_iter_forward(t_stack *lst, int (*f)(const char *, ...));
 void	stack_iter_backward(t_stack *lst, int (*f)(const char *, ...));
 void	del_first_node(t_stack **lst);
@@ -46,6 +53,13 @@ void	pa(t_stack *stack_a, t_stack *stack_b);
 void	pb(t_stack **stack_a, t_stack **stack_b);
 
 /* instructions_2.c */
-void	ra(t_stack **stack_a);
+void	ra(t_stack **stack_a, int rr_flag);
+void	rb(t_stack **stack_b, int rr_flag);
+void	rr(t_stack **stack_a, t_stack **stack_b);
+void	rra(t_stack **stack_a, int rrr_flag);
+void	rrb(t_stack **stack_b, int rrr_flag);
+void	rrr(t_stack **stack_a, t_stack **stack_b);
+
+#endif
 
 
