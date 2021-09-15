@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/14 11:16:48 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/15 09:16:26 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ int	main(int ac, char **av)
 	}
 	print_stack_list_forward(stack_a, &printf, 'a');
 	print_stack_list_forward(stack_b, &printf, 'b');
+	print_stack_list_backward(stack_a, &printf, 'a');
+	print_stack_list_backward(stack_b, &printf, 'b');
 	
 	//sa(stack_a);
 	//sb(stack_b);
@@ -100,9 +102,12 @@ int	main(int ac, char **av)
 	//pa(stack_a, stack_b);
 	//pb(&stack_a, &stack_b);
 	//ra(&stack_a);
+	rb(&stack_b);
 
 	print_stack_list_forward(stack_a, &printf, 'a');
 	print_stack_list_forward(stack_b, &printf, 'b');
+	print_stack_list_backward(stack_a, &printf, 'a');
+	print_stack_list_backward(stack_b, &printf, 'b');
 	
 	
 	if (check_list_is_sorted(stack_a))
