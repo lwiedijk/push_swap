@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 15:00:16 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/14 11:07:27 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/15 09:05:44 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	add_node_back(t_stack **lst, t_stack *new)
 
 		last->next = new;
 		//printf("last_nodes 'next' new = [%p]\n", last->next);
-		new->prev = last;
+		new->prev = last; // same as last->next->prev = last;
 		//printf("last_nodes 'prev' new = [%p]\n", new->prev);
 	}
 }
@@ -85,6 +85,25 @@ void	print_stack_list_forward(t_stack *lst, int (*f)(const char *, ...), char st
 	{
 		f("node[%d] of stack_%c: (%d)\n", i, stack_char, lst->to_sort);
 		lst = lst->next;
+		i++;
+	}
+}
+
+void	print_stack_list_backward(t_stack *lst, int (*f)(const char *, ...), char stack_char)
+{
+	int i;
+
+	i = 0; // should be equel to list_lengts() and then -- in loop!
+	if (!lst || !f)
+	{
+		printf("No stack_%c to print backwards\n", stack_char);
+		return ;
+	}
+	lst = last_node(lst);
+	while (lst)
+	{
+		f("node[%d] of stack_%c backw: (%d)\n", i, stack_char, lst->to_sort);
+		lst = lst->prev;
 		i++;
 	}
 }
