@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/27 09:27:21 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/15 14:46:52 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/22 13:14:52 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ typedef enum e_error_code
 	WRONG_AC,
 	MALLOC_FAIL,
 }	t_error_code;
+
+typedef enum e_stack_position
+{
+	DONT_SORT,
+	LOWEST,
+	MIDDEL_LOW,
+	MIDDEL_HIGH,
+	HIGHEST,
+}	t_stack_position;
 
 /* create_stack.c */
 void	ft_error(int error_code);
