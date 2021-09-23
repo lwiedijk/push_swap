@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/22 13:17:55 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/23 09:53:48 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,26 +88,26 @@ int	top_of_small_stack(t_stack *stack_a)
 	}
 }
 
-void	sort_small_stack(t_stack *stack_a)
+void	sort_small_stack(t_stack **stack_a)
 {
 	int	stack_top;
 	
-	stack_top = top_of_small_stack(stack_a);
+	stack_top = top_of_small_stack(*stack_a);
 	if (stack_top == HIGHEST)
 	{
-		ra(&stack_a, FALSE);
-		if (!list_is_sorted(stack_a))
-		sa(stack_a);
+		ra(stack_a, FALSE);
+		if (!list_is_sorted(*stack_a))
+		sa(*stack_a);
 	}
 	if (stack_top == LOWEST)
 	{
-		sa(stack_a);
-		ra(&stack_a, FALSE);
+		sa(*stack_a);
+		ra(stack_a, FALSE);
 	}
 	if (stack_top == MIDDEL_LOW)
-		sa(stack_a);
+		sa(*stack_a);
 	if (stack_top == MIDDEL_HIGH)
-		rra(&stack_a, FALSE);
+		rra(stack_a, FALSE);
 }
 
 int	main(int ac, char **av)
@@ -151,7 +151,7 @@ int	main(int ac, char **av)
 	if (ac < 5)
 	{
 		if (!list_is_sorted(stack_a))
-			sort_small_stack(stack_a);
+			sort_small_stack(&stack_a);
 	}
 	else
 		printf("need sort large list\n");
@@ -176,8 +176,8 @@ int	main(int ac, char **av)
 
 	print_stack_list_forward(stack_a, &printf, 'a');
 	print_stack_list_forward(stack_b, &printf, 'b');
-	//print_stack_list_backward(stack_a, &printf, 'a');
-	//print_stack_list_backward(stack_b, &printf, 'b');
+	print_stack_list_backward(stack_a, &printf, 'a');
+	print_stack_list_backward(stack_b, &printf, 'b');
 	
 	
 	if (list_is_sorted(stack_a))
