@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/23 09:53:48 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/24 09:48:38 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	list_is_sorted(t_stack *stack)
 	return (TRUE);
 }
 
-int	top_of_small_stack(t_stack *stack_a)
+int	top_of_mini_stack(t_stack *stack_a)
 {
 	long	int compare1;
 	long	int compare2;
@@ -88,11 +88,11 @@ int	top_of_small_stack(t_stack *stack_a)
 	}
 }
 
-void	sort_small_stack(t_stack **stack_a)
+void	sort_mini_stack(t_stack **stack_a)
 {
 	int	stack_top;
 	
-	stack_top = top_of_small_stack(*stack_a);
+	stack_top = top_of_mini_stack(*stack_a);
 	if (stack_top == HIGHEST)
 	{
 		ra(stack_a, FALSE);
@@ -108,6 +108,37 @@ void	sort_small_stack(t_stack **stack_a)
 		sa(*stack_a);
 	if (stack_top == MIDDEL_HIGH)
 		rra(stack_a, FALSE);
+}
+
+void	sort_small_stack(t_stack **stack_a, t_stack **stack_b, int ac)
+{
+	int stack_of_four;
+
+	if (ac == 5)
+	{
+		stack_of_four = TRUE;
+		pb(*stack_a, *stack_b);
+	}
+	else
+	{
+		stack_of_four = FALSE;
+		pb(stack_a, stack_b);
+		pb(stack_a, stack_b);
+	}
+	sort_mini_stack(stack_a);
+	pa(*stack_a, *stack_b);
+	if (stack_of_four)
+	{
+		if (list_is_sorted(*stack_a));
+			return ;
+		//else
+		//{
+		//	if 
+		//}
+		
+	}
+	
+	
 }
 
 int	main(int ac, char **av)
@@ -151,8 +182,11 @@ int	main(int ac, char **av)
 	if (ac < 5)
 	{
 		if (!list_is_sorted(stack_a))
-			sort_small_stack(&stack_a);
+			sort_mini_stack(&stack_a);
 	}
+	else if (ac == 5 || ac == 6)
+		if (!list_is_sorted(stack_a))
+			sort_small_stack(&stack_a, &stack_b, ac);
 	else
 		printf("need sort large list\n");
 	
