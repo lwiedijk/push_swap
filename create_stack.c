@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/24 09:48:38 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/24 11:23:49 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	sort_small_stack(t_stack **stack_a, t_stack **stack_b, int ac)
 	if (ac == 5)
 	{
 		stack_of_four = TRUE;
-		pb(*stack_a, *stack_b);
+		pb(stack_a, stack_b);
 	}
 	else
 	{
@@ -129,7 +129,7 @@ void	sort_small_stack(t_stack **stack_a, t_stack **stack_b, int ac)
 	pa(*stack_a, *stack_b);
 	if (stack_of_four)
 	{
-		if (list_is_sorted(*stack_a));
+		if (list_is_sorted(*stack_a))
 			return ;
 		//else
 		//{
@@ -185,8 +185,10 @@ int	main(int ac, char **av)
 			sort_mini_stack(&stack_a);
 	}
 	else if (ac == 5 || ac == 6)
+	{
 		if (!list_is_sorted(stack_a))
 			sort_small_stack(&stack_a, &stack_b, ac);
+	}
 	else
 		printf("need sort large list\n");
 	
