@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/28 16:41:14 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/28 17:45:17 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	top_of_mini_stack(t_stack *stack_a)
 
 	if (!stack_a || stack_a->next == NULL)
 		return (DONT_SORT);
+	if (list_is_sorted(stack_a))
+		return (DONT_SORT);
 	if (stack_a->next->next == NULL)
 	{
 		sa(stack_a);
@@ -93,11 +95,13 @@ void	sort_mini_stack(t_stack **stack_a)
 	int	stack_top;
 	
 	stack_top = top_of_mini_stack(*stack_a);
+	if (stack_top == DONT_SORT)
+		return ;
 	if (stack_top == HIGHEST)
 	{
 		ra(stack_a, FALSE);
 		if (!list_is_sorted(*stack_a))
-		sa(*stack_a);
+			sa(*stack_a);
 	}
 	if (stack_top == LOWEST)
 	{
@@ -141,15 +145,42 @@ int	find_middel_value(t_stack *stack_a)
 	return (middle_value);
 }
 
+//both still asume stack of 5!! make availeble for stack of 4
+
 void	sort_small_stack(t_stack **stack_a, t_stack **stack_b)
 {
 	//int	stack_of_four;
 	int	middle_value;
+	int	i;
+	t_stack *temp;
 
 	//stack_of_four = TRUE;
+	i = 0;
+	temp = *stack_a;
 	middle_value = find_middel_value(*stack_a);
+	while (i < 2)
+	{
+		if (temp->to_sort < middle_value)
+		{
+			pb(stack_a, stack_b);
+			i++;
+		}
+		else
+			ra(stack_a, FALSE);
+		temp = *stack_a;
+	}
 	sort_mini_stack(stack_a);
-	pb(stack_a, stack_b);
+
+	//fix pa!!!!!!!
+
+	if ((*stack_b)->to_sort > (*stack_b)->next->to_sort)
+		pa(stack_a, stack_b);
+	else
+	{
+		rb(stack_b, FALSE);
+		pa(stack_a, stack_b);
+	}
+	pa(stack_a, stack_b);
 }
 
 int	main(int ac, char **av)
