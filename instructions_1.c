@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 14:36:02 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/15 08:46:47 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/28 17:44:09 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,44 @@ void	ss(t_stack *stack_a, t_stack *stack_b)
 	write(1, "ss\n", 3);
 }
 
-void	pa(t_stack *stack_a, t_stack *stack_b)
-{
-	long int	temp;
-	t_stack		*new_node;
+//void	pa(t_stack *stack_a, t_stack *stack_b)
+//{
+//	long int	temp;
+//	t_stack		*new_node;
+//
+//	if (stack_b)
+//	{
+//		temp = stack_b->to_sort;
+//		new_node = new_stack_node(temp);
+//		add_node_front(&stack_a, new_node);
+//	}
+//	write(1, "pa\n", 3);
+//}
 
-	if (stack_b)
+void	pa(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*last;
+
+	if (*stack_b)
 	{
-		temp = stack_b->to_sort;
-		new_node = new_stack_node(temp);
-		add_node_front(&stack_a, new_node);
+		last = last_node(*stack_a);
+		if (last)
+		{
+			last->next = *stack_b;
+			*stack_b = (*stack_b)->next;
+			if (*stack_b)
+				(*stack_b)->prev = NULL;
+			last->next->next = NULL;
+			last->next->prev = last;
+		}
+		else
+		{
+			*stack_a = *stack_b;
+			*stack_b = (*stack_b)->next;
+			(*stack_b)->prev = NULL;
+			(*stack_a)->prev = NULL;
+			(*stack_a)->next = NULL;
+		}
 	}
 	write(1, "pa\n", 3);
 }
