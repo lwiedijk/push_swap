@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/28 14:33:47 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/28 16:41:14 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,25 +113,28 @@ void	sort_mini_stack(t_stack **stack_a)
 int	find_middel_value(t_stack *stack_a)
 {
 	t_stack *temp_a;
+	t_stack *constant_stack_a;
 	int	middle_value;
 	int	count;
 	int i;
 
 	temp_a = stack_a;
+	constant_stack_a = stack_a;
 	i = 0;
 	while (i < 5)
 	{
-		stack_a = stack_a->next;
 		middle_value = stack_a->to_sort;
 		count = 0;
-		while(temp_a->next != NULL)
+		temp_a = constant_stack_a;
+		while(temp_a)
 		{
-			if (middle_value > temp_a->next->to_sort)
+			if (middle_value > temp_a->to_sort)
 				count++;
-			stack_a = temp_a->next;
+			temp_a = temp_a->next;
 		}
 		if (count == 2)
 			break;
+		stack_a = stack_a->next;
 		i++;
 	}
 	printf("middle_val : %d\n", middle_value);
