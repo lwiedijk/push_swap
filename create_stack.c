@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/24 11:23:49 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/28 14:33:47 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,35 +110,43 @@ void	sort_mini_stack(t_stack **stack_a)
 		rra(stack_a, FALSE);
 }
 
-void	sort_small_stack(t_stack **stack_a, t_stack **stack_b, int ac)
+int	find_middel_value(t_stack *stack_a)
 {
-	int stack_of_four;
+	t_stack *temp_a;
+	int	middle_value;
+	int	count;
+	int i;
 
-	if (ac == 5)
+	temp_a = stack_a;
+	i = 0;
+	while (i < 5)
 	{
-		stack_of_four = TRUE;
-		pb(stack_a, stack_b);
+		stack_a = stack_a->next;
+		middle_value = stack_a->to_sort;
+		count = 0;
+		while(temp_a->next != NULL)
+		{
+			if (middle_value > temp_a->next->to_sort)
+				count++;
+			stack_a = temp_a->next;
+		}
+		if (count == 2)
+			break;
+		i++;
 	}
-	else
-	{
-		stack_of_four = FALSE;
-		pb(stack_a, stack_b);
-		pb(stack_a, stack_b);
-	}
+	printf("middle_val : %d\n", middle_value);
+	return (middle_value);
+}
+
+void	sort_small_stack(t_stack **stack_a, t_stack **stack_b)
+{
+	//int	stack_of_four;
+	int	middle_value;
+
+	//stack_of_four = TRUE;
+	middle_value = find_middel_value(*stack_a);
 	sort_mini_stack(stack_a);
-	pa(*stack_a, *stack_b);
-	if (stack_of_four)
-	{
-		if (list_is_sorted(*stack_a))
-			return ;
-		//else
-		//{
-		//	if 
-		//}
-		
-	}
-	
-	
+	pb(stack_a, stack_b);
 }
 
 int	main(int ac, char **av)
@@ -187,7 +195,7 @@ int	main(int ac, char **av)
 	else if (ac == 5 || ac == 6)
 	{
 		if (!list_is_sorted(stack_a))
-			sort_small_stack(&stack_a, &stack_b, ac);
+			sort_small_stack(&stack_a, &stack_b);
 	}
 	else
 		printf("need sort large list\n");
