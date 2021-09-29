@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 14:36:02 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/29 11:22:23 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/29 13:19:27 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
 			temp_b = *stack_b;
 		temp_a = *stack_a;
 		*stack_a = *stack_b;
-
 		if ((*stack_b)->next)
 			*stack_b = temp_b;
 		else 
@@ -98,7 +97,6 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 			temp_a = *stack_a;
 		temp_b = *stack_b;
 		*stack_b = *stack_a;
-		
 		if ((*stack_a)->next)
 			*stack_a = temp_a;
 		else

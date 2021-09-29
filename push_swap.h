@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/27 09:27:21 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/29 16:14:01 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/29 16:18:14 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ typedef enum e_stack_position
 
 /* create_stack.c */
 void	ft_error(int error_code);
+
+/* utils.c */
+int	list_is_sorted(t_stack *stack);
 
 /* nodes.c */
 t_stack	*new_stack_node(long int input);
