@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 14:36:02 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/29 09:40:19 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/29 10:58:46 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,17 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
 		t_stack *temp_a;
 		t_stack *temp_b;
 
-		if (*stack_b)
+		if ((*stack_b)->next)
 			temp_b = (*stack_b)->next;
 		else
-			temp_b = NULL;
+			temp_b = *stack_b;
 		temp_a = *stack_a;
 		
 		*stack_a = *stack_b;
-		*stack_b = temp_b;
+		if ((*stack_b)->next)
+			*stack_b = temp_b;
+		else 
+			*stack_b = NULL;
 		if (temp_a)
 		{
 			(*stack_a)->next = temp_a;
@@ -89,7 +92,8 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
 		}
 		else
 			(*stack_a)->next = NULL;
-		(*stack_b)->prev = NULL;
+		if (*stack_b)
+			(*stack_b)->prev = NULL;
 		(*stack_a)->prev = NULL;
 	}
 	write(1, "pa\n", 3);
