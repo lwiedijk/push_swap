@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 15:00:16 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/15 09:05:44 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/29 13:44:46 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,19 @@ void	add_node_front(t_stack **lst, t_stack *new)
 	new->next = (*lst);
 	(*lst) = new;
 	new->next->prev = new;
+}
+
+int	count_list(t_stack *lst)
+{
+	int	count;
+
+	count = 0;
+	while(lst)
+	{
+		lst = lst->next;
+		count++;
+	}
+	return (count);
 }
 
 void	print_stack_list_forward(t_stack *lst, int (*f)(const char *, ...), char stack_char)

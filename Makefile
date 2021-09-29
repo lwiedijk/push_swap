@@ -6,7 +6,7 @@
 #    By: lwiedijk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/27 11:19:54 by lwiedijk      #+#    #+#                  #
-#    Updated: 2021/09/29 16:14:25 by lwiedijk      ########   odam.nl          #
+#    Updated: 2021/09/29 16:18:39 by lwiedijk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 HEADERS = push_swap.h
 SRCS =	create_stack.c instructions_1.c \
 		instructions_2.c nodes.c \
-		sort_small_stack.c \
+		sort_small_stack.c utils.c \
 
 OBJS_DIR = objs/
 _OBJS = $(SRCS:.c=.o)
