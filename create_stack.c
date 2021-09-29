@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/29 16:16:31 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/29 16:53:08 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ void	free_list(t_stack *lst)
 	}
 }
 
+//void	free_split_array()
+//{
+//	write this!
+//}
+
 int	main(int ac, char **av)
 {
 	t_stack *stack_a;
@@ -48,7 +53,9 @@ int	main(int ac, char **av)
 	t_stack *new;
 	int input;
 	int i;
+	int j;
 	int stack_count;
+	char **split_array;
 
 	if (ac < 2)
 		ft_error(WRONG_AC);
@@ -57,21 +64,28 @@ int	main(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		input = ft_atoi(av[i]);
-		if (!stack_a)
+		j = 0;
+		split_array = ft_split(av[i], ' ');
+		while(split_array[j])
 		{
-			stack_a = new_stack_node(input);
+			input = ft_atoi(split_array[j]);
 			if (!stack_a)
-				ft_error(MALLOC_FAIL);
-		}
-		else
-		{
-			new = new_stack_node(input);
-			if (!new)
-				ft_error(MALLOC_FAIL);
-			add_node_back(&stack_a, new);
+			{
+				stack_a = new_stack_node(input);
+				if (!stack_a)
+					ft_error(MALLOC_FAIL);
+			}
+			else
+			{
+				new = new_stack_node(input);
+				if (!new)
+					ft_error(MALLOC_FAIL);
+				add_node_back(&stack_a, new);
+			}
+			j++;
 		}
 		i++;
+		free(split_array);
 	}
 
 	stack_count = count_list(stack_a);
