@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 14:36:02 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/28 17:44:09 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/29 09:40:19 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,56 +69,65 @@ void	ss(t_stack *stack_a, t_stack *stack_b)
 
 void	pa(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*last;
-
 	if (*stack_b)
 	{
-		last = last_node(*stack_a);
-		if (last)
+		t_stack *temp_a;
+		t_stack *temp_b;
+
+		if (*stack_b)
+			temp_b = (*stack_b)->next;
+		else
+			temp_b = NULL;
+		temp_a = *stack_a;
+		
+		*stack_a = *stack_b;
+		*stack_b = temp_b;
+		if (temp_a)
 		{
-			last->next = *stack_b;
-			*stack_b = (*stack_b)->next;
-			if (*stack_b)
-				(*stack_b)->prev = NULL;
-			last->next->next = NULL;
-			last->next->prev = last;
+			(*stack_a)->next = temp_a;
+			(*stack_a)->next->prev = *stack_a;
 		}
 		else
-		{
-			*stack_a = *stack_b;
-			*stack_b = (*stack_b)->next;
-			(*stack_b)->prev = NULL;
-			(*stack_a)->prev = NULL;
 			(*stack_a)->next = NULL;
-		}
+		(*stack_b)->prev = NULL;
+		(*stack_a)->prev = NULL;
 	}
 	write(1, "pa\n", 3);
 }
 
 void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*last;
-
 	if (*stack_a)
 	{
-		last = last_node(*stack_b);
-		if (last)
-		{
-			last->next = *stack_a;
-			*stack_a = (*stack_a)->next;
-			if (*stack_a)
-				(*stack_a)->prev = NULL;
-			last->next->next = NULL;
-			last->next->prev = last;
-		}
-		else
-		{
+		t_stack *temp_a;
+		t_stack *temp_b;
+
+		temp_a = (*stack_a)->next;
+		temp_b = *stack_b;
+		//if ((*stack_b)->next)
+		//{
+		//	last->next = *stack_a;
+		//	*stack_a = (*stack_a)->next;
+		//	if (*stack_a)
+		//		(*stack_a)->prev = NULL;
+		//	last->next->next = NULL;
+		//	last->next->prev = last;
+		//}
+		//else
+		//{
 			*stack_b = *stack_a;
-			*stack_a = (*stack_a)->next;
+			*stack_a = temp_a;
+			if (temp_b)
+			{
+				(*stack_b)->next = temp_b;
+				(*stack_b)->next->prev = *stack_b;
+			}
+			else
+				(*stack_b)->next = NULL;
 			(*stack_a)->prev = NULL;
 			(*stack_b)->prev = NULL;
-			(*stack_b)->next = NULL;
-		}
+			//(*stack_b)->next = NULL;
+		//}
 	}
 	write(1, "pb\n", 3);
 }
