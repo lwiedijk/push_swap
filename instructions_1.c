@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 14:36:02 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/29 10:58:46 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/29 11:00:41 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,6 @@ void	ss(t_stack *stack_a, t_stack *stack_b)
 	write(1, "ss\n", 3);
 }
 
-//void	pa(t_stack *stack_a, t_stack *stack_b)
-//{
-//	long int	temp;
-//	t_stack		*new_node;
-//
-//	if (stack_b)
-//	{
-//		temp = stack_b->to_sort;
-//		new_node = new_stack_node(temp);
-//		add_node_front(&stack_a, new_node);
-//	}
-//	write(1, "pa\n", 3);
-//}
-
 void	pa(t_stack **stack_a, t_stack **stack_b)
 {
 	if (*stack_b)
@@ -108,30 +94,19 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 
 		temp_a = (*stack_a)->next;
 		temp_b = *stack_b;
-		//if ((*stack_b)->next)
-		//{
-		//	last->next = *stack_a;
-		//	*stack_a = (*stack_a)->next;
-		//	if (*stack_a)
-		//		(*stack_a)->prev = NULL;
-		//	last->next->next = NULL;
-		//	last->next->prev = last;
-		//}
-		//else
-		//{
-			*stack_b = *stack_a;
-			*stack_a = temp_a;
-			if (temp_b)
-			{
-				(*stack_b)->next = temp_b;
-				(*stack_b)->next->prev = *stack_b;
-			}
-			else
-				(*stack_b)->next = NULL;
-			(*stack_a)->prev = NULL;
-			(*stack_b)->prev = NULL;
-			//(*stack_b)->next = NULL;
-		//}
+	
+		*stack_b = *stack_a;
+		*stack_a = temp_a;
+		if (temp_b)
+		{
+			(*stack_b)->next = temp_b;
+			(*stack_b)->next->prev = *stack_b;
+		}
+		else
+			(*stack_b)->next = NULL;
+		(*stack_a)->prev = NULL;
+		(*stack_b)->prev = NULL;
+			
 	}
 	write(1, "pb\n", 3);
 }
