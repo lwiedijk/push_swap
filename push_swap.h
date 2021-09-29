@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/27 09:27:21 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/28 17:44:34 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/29 16:14:01 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_stack	*new_stack_node(long int input);
 t_stack	*last_node(t_stack *lst);
 void	add_node_back(t_stack **lst, t_stack *new);
 void	add_node_front(t_stack **lst, t_stack *new);
+int	count_list(t_stack *lst);
 void	print_stack_list_forward(t_stack *lst, int (*f)(const char *, ...), char stack_char);
 void	print_stack_list_backward(t_stack *lst, int (*f)(const char *, ...), char stack_char);
 void	stack_iter_forward(t_stack *lst, int (*f)(const char *, ...));
@@ -68,6 +69,13 @@ void	rr(t_stack **stack_a, t_stack **stack_b);
 void	rra(t_stack **stack_a, int rrr_flag);
 void	rrb(t_stack **stack_b, int rrr_flag);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
+
+/* sort_small_stack.c */
+int	top_of_mini_stack(t_stack *stack_a);
+void	sort_mini_stack(t_stack **stack_a);
+void	find_middel_value(t_stack *stack_a, int *middle_value);
+void	sort_small_stack(t_stack **stack_a, t_stack **stack_b);
+
 
 #endif
 
