@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/28 17:45:17 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/29 14:24:58 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,10 @@ void	sort_mini_stack(t_stack **stack_a)
 		rra(stack_a, FALSE);
 }
 
-int	find_middel_value(t_stack *stack_a)
+void	find_middel_value(t_stack *stack_a, int *middle_value)
 {
 	t_stack *temp_a;
 	t_stack *constant_stack_a;
-	int	middle_value;
 	int	count;
 	int i;
 
@@ -127,12 +126,12 @@ int	find_middel_value(t_stack *stack_a)
 	i = 0;
 	while (i < 5)
 	{
-		middle_value = stack_a->to_sort;
+		*middle_value = stack_a->to_sort;
 		count = 0;
 		temp_a = constant_stack_a;
 		while(temp_a)
 		{
-			if (middle_value > temp_a->to_sort)
+			if (*middle_value > temp_a->to_sort)
 				count++;
 			temp_a = temp_a->next;
 		}
@@ -141,23 +140,17 @@ int	find_middel_value(t_stack *stack_a)
 		stack_a = stack_a->next;
 		i++;
 	}
-	printf("middle_val : %d\n", middle_value);
-	return (middle_value);
 }
-
-//both still asume stack of 5!! make availeble for stack of 4
 
 void	sort_small_stack(t_stack **stack_a, t_stack **stack_b)
 {
-	//int	stack_of_four;
 	int	middle_value;
 	int	i;
 	t_stack *temp;
 
-	//stack_of_four = TRUE;
 	i = 0;
 	temp = *stack_a;
-	middle_value = find_middel_value(*stack_a);
+	find_middel_value(*stack_a, &middle_value);
 	while (i < 2)
 	{
 		if (temp->to_sort < middle_value)
@@ -170,9 +163,6 @@ void	sort_small_stack(t_stack **stack_a, t_stack **stack_b)
 		temp = *stack_a;
 	}
 	sort_mini_stack(stack_a);
-
-	//fix pa!!!!!!!
-
 	if ((*stack_b)->to_sort > (*stack_b)->next->to_sort)
 		pa(stack_a, stack_b);
 	else
@@ -190,6 +180,7 @@ int	main(int ac, char **av)
 	t_stack *new;
 	int input;
 	int i;
+	int stack_count;
 
 	if (ac < 2)
 		ft_error(WRONG_AC);
@@ -216,17 +207,19 @@ int	main(int ac, char **av)
 		i++;
 	}
 
+	stack_count = count_list(stack_a);
+	printf("stack_count = [%d]\n", stack_count);
 	print_stack_list_forward(stack_a, &printf, 'a');
 	print_stack_list_forward(stack_b, &printf, 'b');
 	//print_stack_list_backward(stack_a, &printf, 'a');
 	//print_stack_list_backward(stack_b, &printf, 'b');
 
-	if (ac < 5)
+	if (stack_count <= 3)
 	{
 		if (!list_is_sorted(stack_a))
 			sort_mini_stack(&stack_a);
 	}
-	else if (ac == 5 || ac == 6)
+	else if (stack_count <= 5)
 	{
 		if (!list_is_sorted(stack_a))
 			sort_small_stack(&stack_a, &stack_b);
