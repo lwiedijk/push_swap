@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/29 16:53:08 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/30 09:20:16 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,6 @@
 #include "push_swap.h"
 #include "libft/libft.h"
 // Remove all printf!!! 
-
-void	ft_error(int error_code)
-{
-	write(2, "Error\n", 6);
-	if (error_code == TEST)
-		printf("ended in error\n");
-	if (error_code == WRONG_AC)
-		printf("wrong amound of arguments where passed\n");
-	if (error_code == MALLOC_FAIL)
-		exit(1);
-	exit(1);
-}
 
 void	free_list(t_stack *lst)
 {
@@ -58,7 +46,7 @@ int	main(int ac, char **av)
 	char **split_array;
 
 	if (ac < 2)
-		ft_error(WRONG_AC);
+		exit (0);
 	stack_a = NULL;
 	stack_b = NULL;
 	i = 1;
@@ -73,21 +61,21 @@ int	main(int ac, char **av)
 			{
 				stack_a = new_stack_node(input);
 				if (!stack_a)
-					ft_error(MALLOC_FAIL);
+					ft_error(ERROR);
 			}
 			else
 			{
 				new = new_stack_node(input);
 				if (!new)
-					ft_error(MALLOC_FAIL);
+					ft_error(ERROR);
 				add_node_back(&stack_a, new);
 			}
 			j++;
 		}
 		i++;
-		free(split_array);
+		free(split_array);//make a function out of this^
 	}
-
+	check_doubles_input(stack_a);
 	stack_count = count_list(stack_a);
 	printf("stack_count = [%d]\n", stack_count);
 	print_stack_list_forward(stack_a, &printf, 'a');
