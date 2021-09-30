@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/06 18:25:09 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/08/26 15:10:28 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/30 13:30:49 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	ft_the_strings(char **substr, unsigned int *substrlen, char c)
 	}
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c, int *string_count)
 {
 	char			**ptr;
 	char			*substr;
@@ -83,6 +83,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
+	*string_count = ft_string_count(s, c);
 	ptr = (char **)malloc((ft_string_count(s, c) + 1) * sizeof(char *));
 	if (ptr == NULL)
 		return (NULL);
