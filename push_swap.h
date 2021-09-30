@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/27 09:27:21 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/29 16:18:14 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/30 09:15:39 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ typedef struct s_stack
 typedef enum e_error_code
 {
 	OK,
+	ERROR,
 	TEST,
-	WRONG_AC,
-	MALLOC_FAIL,
 }	t_error_code;
 
 typedef enum e_stack_position
@@ -41,17 +40,18 @@ typedef enum e_stack_position
 }	t_stack_position;
 
 /* create_stack.c */
-void	ft_error(int error_code);
 
 /* utils.c */
-int	list_is_sorted(t_stack *stack);
+void	ft_error(int error_code);
+int		list_is_sorted(t_stack *stack);
+void	check_doubles_input(t_stack *stack_a);
 
 /* nodes.c */
 t_stack	*new_stack_node(long int input);
 t_stack	*last_node(t_stack *lst);
 void	add_node_back(t_stack **lst, t_stack *new);
 void	add_node_front(t_stack **lst, t_stack *new);
-int	count_list(t_stack *lst);
+int		count_list(t_stack *lst);
 void	print_stack_list_forward(t_stack *lst, int (*f)(const char *, ...), char stack_char);
 void	print_stack_list_backward(t_stack *lst, int (*f)(const char *, ...), char stack_char);
 void	stack_iter_forward(t_stack *lst, int (*f)(const char *, ...));
@@ -74,12 +74,9 @@ void	rrb(t_stack **stack_b, int rrr_flag);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 
 /* sort_small_stack.c */
-int	top_of_mini_stack(t_stack *stack_a);
+int		top_of_mini_stack(t_stack *stack_a);
 void	sort_mini_stack(t_stack **stack_a);
 void	find_middel_value(t_stack *stack_a, int *middle_value);
 void	sort_small_stack(t_stack **stack_a, t_stack **stack_b);
 
-
 #endif
-
-
