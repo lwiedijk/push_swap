@@ -6,11 +6,12 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/29 16:15:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/30 11:23:10 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/30 11:59:48 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft/libft.h"
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -42,7 +43,7 @@ int	list_is_sorted(t_stack *stack)
 	return (TRUE);
 }
 
-int	num_is_same(t_stack *lst, long int check)
+static int	num_is_same(t_stack *lst, long int check)
 {
 	int i;
 
@@ -63,5 +64,18 @@ void	check_doubles_input(t_stack *stack)
 		if (num_is_same(stack->next, stack->to_sort))
 			ft_error(ERROR);
 		stack = stack->next;
+	}
+}
+
+void	check_isdigit(char **split_array)
+{
+	int	i;
+
+	i = 0;
+	while (split_array[0][i])
+	{
+		if (!ft_isdigit(split_array[0][i]))
+			ft_error(ERROR);
+		i++;
 	}
 }
