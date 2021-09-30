@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/29 16:15:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/30 11:59:48 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/09/30 13:42:19 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,21 @@ void	check_doubles_input(t_stack *stack)
 	}
 }
 
-void	check_isdigit(char **split_array)
+void	check_isdigit(char **split_array, int arg_amount)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	while (split_array[0][i])
+	while (i < arg_amount)
 	{
-		if (!ft_isdigit(split_array[0][i]))
-			ft_error(ERROR);
+		j = 0;
+		while (split_array[i][j])
+		{
+			if (!ft_isdigit(split_array[i][j]))
+				ft_error(ERROR);
+			j++;
+		}
 		i++;
 	}
 }
