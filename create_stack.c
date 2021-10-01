@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/30 09:20:16 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/01 09:45:41 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,19 @@
 #include <unistd.h>
 #include "push_swap.h"
 #include "libft/libft.h"
+
 // Remove all printf!!! 
-
-void	free_list(t_stack *lst)
-{
-	if (!lst)
-		return ;
-	lst = last_node(lst);
-	while (lst)
-	{
-		free(lst->next);
-		lst = lst->prev;
-	}
-}
-
-//void	free_split_array()
-//{
-//	write this!
-//}
 
 int	main(int ac, char **av)
 {
 	t_stack *stack_a;
 	t_stack *stack_b;
 	t_stack *new;
-	int input;
+	long int input;
 	int i;
 	int j;
 	int stack_count;
+	int arg_amount;
 	char **split_array;
 
 	if (ac < 2)
@@ -53,7 +38,8 @@ int	main(int ac, char **av)
 	while (i < ac)
 	{
 		j = 0;
-		split_array = ft_split(av[i], ' ');
+		split_array = ft_split(av[i], ' ', &arg_amount);
+		check_isdigit(split_array, arg_amount);
 		while(split_array[j])
 		{
 			input = ft_atoi(split_array[j]);
@@ -73,10 +59,12 @@ int	main(int ac, char **av)
 			j++;
 		}
 		i++;
-		free(split_array);//make a function out of this^
+		free_split_array(split_array, arg_amount);
 	}
 	check_doubles_input(stack_a);
+	check_min_max(stack_a);
 	stack_count = count_list(stack_a);
+	
 	printf("stack_count = [%d]\n", stack_count);
 	print_stack_list_forward(stack_a, &printf, 'a');
 	print_stack_list_forward(stack_b, &printf, 'b');
@@ -120,9 +108,9 @@ int	main(int ac, char **av)
 	print_stack_list_backward(stack_b, &printf, 'b');
 	
 	
-	if (list_is_sorted(stack_a))
-		return (printf("list is sorted\n"));
-	return (printf("not sorted or stack_a is empty\n"));
+	//if (list_is_sorted(stack_a))
+	//	return (printf("list is sorted\n"));
+	//return (printf("not sorted or stack_a is empty\n"));
 	
 	free_list(stack_a);
 	free(stack_a);

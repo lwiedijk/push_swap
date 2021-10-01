@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/27 09:27:21 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/30 13:35:28 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/01 09:45:35 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ void	ft_error(int error_code);
 int		list_is_sorted(t_stack *stack);
 void	check_doubles_input(t_stack *stack_a);
 void	check_isdigit(char **split_array, int arg_amount);
+void	check_min_max(t_stack *stack);
+
+/* free.c */
+void	free_list(t_stack *lst);
+void	free_split_array(char **split_array, int arg_amount);
 
 /* nodes.c */
 t_stack	*new_stack_node(long int input);
