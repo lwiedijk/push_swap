@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/29 16:15:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/30 13:42:19 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/01 09:22:51 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft/libft.h"
 #include <stdlib.h>
 #include <unistd.h>
+#include <limits.h>
 
 #include <stdio.h>
 
@@ -45,9 +46,6 @@ int	list_is_sorted(t_stack *stack)
 
 static int	num_is_same(t_stack *lst, long int check)
 {
-	int i;
-
-	i = 0;
 	while (lst)
 	{
 		if (lst->to_sort == check)
@@ -83,5 +81,15 @@ void	check_isdigit(char **split_array, int arg_amount)
 			j++;
 		}
 		i++;
+	}
+}
+
+void	check_min_max(t_stack *stack)
+{
+	while (stack)
+	{
+		if (stack->to_sort > INT_MAX || stack->to_sort < INT_MIN)
+			ft_error(ERROR);
+		stack = stack->next;
 	}
 }
