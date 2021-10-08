@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/27 09:27:21 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/01 09:45:35 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/08 11:35:11 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct s_stack
 {
 	long int		to_sort;
+	unsigned int	index;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
@@ -84,5 +85,10 @@ int		top_of_mini_stack(t_stack *stack_a);
 void	sort_mini_stack(t_stack **stack_a);
 void	find_middel_value(t_stack *stack_a, int *middle_value);
 void	sort_small_stack(t_stack **stack_a, t_stack **stack_b);
+
+/* sort_large_stack.c */
+void	sort_large_stack(t_stack **stack_a, t_stack **stack_b, int stack_count);
+void	put_stack_to_array(t_stack *stack_a, int stack_count);
+void	get_index_position(t_stack *stack_a, t_stack *stack_array, int stack_count);
 
 #endif
