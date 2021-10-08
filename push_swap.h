@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/27 09:27:21 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/08 11:35:11 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/08 14:00:47 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,10 @@ void	sort_small_stack(t_stack **stack_a, t_stack **stack_b);
 
 /* sort_large_stack.c */
 void	sort_large_stack(t_stack **stack_a, t_stack **stack_b, int stack_count);
+
+/* simplify_stack_input.c */
 void	put_stack_to_array(t_stack *stack_a, int stack_count);
+void	sort_stack_array(t_stack *stack_a, t_stack *stack_array, int stack_count);
 void	get_index_position(t_stack *stack_a, t_stack *stack_array, int stack_count);
 
 #endif

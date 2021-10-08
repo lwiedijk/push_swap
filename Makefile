@@ -6,7 +6,7 @@
 #    By: lwiedijk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/27 11:19:54 by lwiedijk      #+#    #+#                  #
-#    Updated: 2021/10/08 09:48:10 by lwiedijk      ########   odam.nl          #
+#    Updated: 2021/10/08 13:59:44 by lwiedijk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRCS =	create_stack.c instructions_1.c \
 		instructions_2.c nodes.c \
 		sort_small_stack.c utils.c \
 		free.c sort_large_stack.c \
+		simplify_stack_input.c \
 
 OBJS_DIR = objs/
 _OBJS = $(SRCS:.c=.o)
