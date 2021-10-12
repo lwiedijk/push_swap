@@ -87,3 +87,8 @@ void	put_stack_to_array(t_stack *stack_a, int stack_count)
 	sort_stack_array(stack_a, stack_array, stack_count);
 	free(stack_array);
 }
+
+void	simplify_stack_input(t_stack *stack_a, int stack_count)
+{
+	put_stack_to_array(stack_a, stack_count);
+}

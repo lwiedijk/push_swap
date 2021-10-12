@@ -90,6 +90,7 @@ void	sort_small_stack(t_stack **stack_a, t_stack **stack_b);
 void	sort_large_stack(t_stack **stack_a, t_stack **stack_b, int stack_count);
 
 /* simplify_stack_input.c */
+void	simplify_stack_input(t_stack *stack_a, int stack_count);
 void	put_stack_to_array(t_stack *stack_a, int stack_count);
 void	sort_stack_array(t_stack *stack_a, t_stack *stack_array, int stack_count);
 void	get_index_position(t_stack *stack_a, t_stack *stack_array, int stack_count);
