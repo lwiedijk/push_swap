@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/29 15:56:07 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/01 13:06:16 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/12 18:24:46 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,21 +101,18 @@ void	sort_small_stack(t_stack **stack_a, t_stack **stack_b)
 {
 	int		middle_value;
 	int		i;
-	t_stack	*temp;
 
 	i = 0;
-	temp = *stack_a;
 	find_middel_value(*stack_a, &middle_value);
 	while (i < 2)
 	{
-		if (temp->to_sort < middle_value)
+		if ((*stack_a)->to_sort < middle_value)
 		{
 			pb(stack_a, stack_b);
 			i++;
 		}
 		else
 			ra(stack_a, FALSE);
-		temp = *stack_a;
 	}
 	sort_mini_stack(stack_a);
 	if ((*stack_b)->to_sort > (*stack_b)->next->to_sort)
