@@ -6,89 +6,57 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/08 09:40:23 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/08 13:43:35 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/12 13:57:12 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-void	get_index_position(t_stack *stack_a, t_stack *stack_array, int stack_count)
-{
-	t_stack	*temp_head;
-	int		i;
+void	radix_binary(t_stack **stack_a, t_stack **stack_b, int bit_count, int stack_count)
+{	
+	int i;
+	int node_count;
 
 	i = 0;
-	temp_head = stack_a;
-	while (i < stack_count)
+	while (i < bit_count)
 	{
-		temp_head = stack_a;
-		while (temp_head)
+		node_count = 0;
+		while (node_count < stack_count)
 		{
-			if (stack_array[i].to_sort == temp_head->to_sort)
-			{
-				temp_head->index = stack_array[i].index;
-			}
-			temp_head = temp_head->next;
+			if ((((*stack_a)->index >> i) & 1) == 0)
+				pb(stack_a, stack_b);
+			else
+				ra(stack_a, FALSE);
+			node_count++;
 		}
+		while (*stack_b)
+			pa(stack_a, stack_b);
 		i++;
 	}
-
 }
 
-void	sort_stack_array(t_stack *stack_a, t_stack *stack_array, int stack_count)
+int	numlen_in_bits(int stack_count)//put in utils or smth
 {
-	long int	temp_num;
-	//t_stack		*temp_head;
-	int			i;
-	int			j;
-	
-	//temp_head = stack_a;
-	i = 0;
-	while (i < stack_count)
-	{
-		j = 1 + i;
-		while (j < stack_count)
-		{
-			if (stack_array[i].to_sort > stack_array[j].to_sort)
-			{
-				temp_num = stack_array[i].to_sort;
-				stack_array[i].to_sort = stack_array[j].to_sort;
-				stack_array[j].to_sort = temp_num;
-			}
-			j++;
-		}
-		stack_array[i].index = i;
-		i++;
-	}
-	get_index_position(stack_a, stack_array, stack_count);
-}
+	int	len;
 
-void	put_stack_to_array(t_stack *stack_a, int stack_count)
-{
-	t_stack	*temp_head;
-	t_stack	*stack_array;
-	int	i;
-
-	temp_head = stack_a;
-	stack_array = (t_stack *)malloc(sizeof(t_stack) * stack_count);
-	if (!stack_array)
-		ft_error(ERROR);
-	i = 0;
-	while (i < stack_count)
+	len = 0;
+	while (stack_count)
 	{
-		stack_array[i] = *temp_head;
-		//temp_head->index = i; pas na gesorteerd tuurlijk
-		temp_head = temp_head->next;
-		i++;
+		stack_count = stack_count / 2;
+		len++;
 	}
-	//stack_array[i] = NULL; dit werkt niet want geen node, is 0 termination nodig hier? 
-	sort_stack_array(stack_a, stack_array, stack_count);
-	free(stack_array);
+	return (len);
 }
 
 void	sort_large_stack(t_stack **stack_a, t_stack **stack_b, int stack_count)
 {
-	put_stack_to_array(*stack_a, stack_count);
+	int bit_count;
+
+	simplify_stack_input(*stack_a, stack_count);
+	bit_count = numlen_in_bits(stack_count);
+	radix_binary(stack_a, stack_b, bit_count, stack_count);
+	//printf("stack_count in binairy: [%d]\n", bit_count);
 	stack_b = stack_a; //remove
 }
