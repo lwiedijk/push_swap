@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/29 15:56:07 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/29 16:12:07 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/01 13:06:16 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@
 
 int	top_of_mini_stack(t_stack *stack_a)
 {
-	long	int compare1;
-	long	int compare2;
-	long	int compare3;
+	long int	compare1;
+	long int	compare2;
+	long int	compare3;
 
-	if (!stack_a || stack_a->next == NULL)
-		return (DONT_SORT);
 	if (list_is_sorted(stack_a))
 		return (DONT_SORT);
 	if (stack_a->next->next == NULL)
@@ -48,7 +46,9 @@ int	top_of_mini_stack(t_stack *stack_a)
 void	sort_mini_stack(t_stack **stack_a)
 {
 	int	stack_top;
-	
+
+	if (!*stack_a || (*stack_a)->next == NULL)
+		return ;
 	stack_top = top_of_mini_stack(*stack_a);
 	if (stack_top == DONT_SORT)
 		return ;
@@ -71,10 +71,10 @@ void	sort_mini_stack(t_stack **stack_a)
 
 void	find_middel_value(t_stack *stack_a, int *middle_value)
 {
-	t_stack *temp_a;
-	t_stack *constant_stack_a;
-	int	count;
-	int i;
+	t_stack	*temp_a;
+	t_stack	*constant_stack_a;
+	int		count;
+	int		i;
 
 	temp_a = stack_a;
 	constant_stack_a = stack_a;
@@ -84,14 +84,14 @@ void	find_middel_value(t_stack *stack_a, int *middle_value)
 		*middle_value = stack_a->to_sort;
 		count = 0;
 		temp_a = constant_stack_a;
-		while(temp_a)
+		while (temp_a)
 		{
 			if (*middle_value > temp_a->to_sort)
 				count++;
 			temp_a = temp_a->next;
 		}
 		if (count == 2)
-			break;
+			break ;
 		stack_a = stack_a->next;
 		i++;
 	}
@@ -99,9 +99,9 @@ void	find_middel_value(t_stack *stack_a, int *middle_value)
 
 void	sort_small_stack(t_stack **stack_a, t_stack **stack_b)
 {
-	int	middle_value;
-	int	i;
-	t_stack *temp;
+	int		middle_value;
+	int		i;
+	t_stack	*temp;
 
 	i = 0;
 	temp = *stack_a;

@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 15:00:16 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/09/29 13:44:46 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/01 09:19:26 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	print_stack_list_forward(t_stack *lst, int (*f)(const char *, ...), char st
 	}
 	while (lst)
 	{
-		f("node[%d] of stack_%c: (%d)\n", i, stack_char, lst->to_sort);
+		f("node[%d] of stack_%c: (%ld)\n", i, stack_char, lst->to_sort);
 		lst = lst->next;
 		i++;
 	}
@@ -115,7 +115,7 @@ void	print_stack_list_backward(t_stack *lst, int (*f)(const char *, ...), char s
 	lst = last_node(lst);
 	while (lst)
 	{
-		f("node[%d] of stack_%c backw: (%d)\n", i, stack_char, lst->to_sort);
+		f("node[%d] of stack_%c backw: (%ld)\n", i, stack_char, lst->to_sort);
 		lst = lst->prev;
 		i++;
 	}
