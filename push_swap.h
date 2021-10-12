@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/27 09:27:21 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/08 14:00:47 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/12 18:50:26 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define TRUE 1
 # define FALSE 0
+# define SMALL_STACK 5
+# define HALF_SMALL_STACK 2
 
 typedef struct s_stack
 {

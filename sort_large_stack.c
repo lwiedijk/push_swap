@@ -6,13 +6,12 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/08 09:40:23 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/12 14:34:57 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/12 18:40:29 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 void	radix_binary(t_stack **stack_a, t_stack **stack_b,
 						int bit_count, int stack_count)
@@ -38,7 +37,7 @@ void	radix_binary(t_stack **stack_a, t_stack **stack_b,
 	}
 }
 
-int	numlen_in_bits(int stack_count)//put in utils or smth
+int	numlen_in_bits(int stack_count)
 {
 	int	len;
 
