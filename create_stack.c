@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/01 09:45:41 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/12 13:53:42 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,10 @@ int	main(int ac, char **av)
 	check_min_max(stack_a);
 	stack_count = count_list(stack_a);
 	
-	printf("stack_count = [%d]\n", stack_count);
-	print_stack_list_forward(stack_a, &printf, 'a');
-	print_stack_list_forward(stack_b, &printf, 'b');
+	//printf("stack_count = [%d]\n", stack_count);
+	//
+	//print_stack_list_forward(stack_a, &printf, 'a');
+	//print_stack_list_forward(stack_b, &printf, 'b');
 	//print_stack_list_backward(stack_a, &printf, 'a');
 	//print_stack_list_backward(stack_b, &printf, 'b');
 
@@ -82,7 +83,8 @@ int	main(int ac, char **av)
 			sort_small_stack(&stack_a, &stack_b);
 	}
 	else
-		printf("need sort large list\n");
+		if (!list_is_sorted(stack_a))
+			sort_large_stack(&stack_a, &stack_b, stack_count);
 	
 	//sa(stack_a);
 	//sb(stack_b);
@@ -102,10 +104,10 @@ int	main(int ac, char **av)
 	//rrb(&stack_b, FALSE);
 	//rrr(&stack_a, &stack_b);
 
-	print_stack_list_forward(stack_a, &printf, 'a');
-	print_stack_list_forward(stack_b, &printf, 'b');
-	print_stack_list_backward(stack_a, &printf, 'a');
-	print_stack_list_backward(stack_b, &printf, 'b');
+	//print_stack_list_forward(stack_a, &printf, 'a');
+	//print_stack_list_forward(stack_b, &printf, 'b');
+	//print_stack_list_backward(stack_a, &printf, 'a');
+	//print_stack_list_backward(stack_b, &printf, 'b');
 	
 	
 	//if (list_is_sorted(stack_a))
