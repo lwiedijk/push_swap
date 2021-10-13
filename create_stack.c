@@ -6,119 +6,103 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/12 13:53:42 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/13 15:13:27 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
 #include "push_swap.h"
 #include "libft/libft.h"
 
-// Remove all printf!!! 
-
-int	main(int ac, char **av)
+void	ft_error(int error_code)
 {
-	t_stack *stack_a;
-	t_stack *stack_b;
-	t_stack *new;
-	long int input;
-	int i;
-	int j;
-	int stack_count;
-	int arg_amount;
-	char **split_array;
+	if (error_code == ERROR)
+		write(STDERR_FILENO, "Error\n", 6);
+	exit(EXIT_FAILURE);
+}
 
-	if (ac < 2)
-		exit (0);
-	stack_a = NULL;
-	stack_b = NULL;
+t_stack	*create_stack(long int input, t_stack *stack_a)
+{
+	t_stack	*new;
+
+	if (!stack_a)
+	{
+		stack_a = new_stack_node(input);
+		if (!stack_a)
+			ft_error(ERROR);
+	}
+	else
+	{
+		new = new_stack_node(input);
+		if (!new)
+			ft_error(ERROR);
+		add_node_back(&stack_a, new);
+	}
+	return (stack_a);
+}
+
+void	parse_arguments(int ac, char**av, t_stack **stack_a)
+{
+	int			i;
+	int			j;
+	long int	input;
+	int			arg_amount;
+	char		**split_array;
+
 	i = 1;
 	while (i < ac)
 	{
 		j = 0;
-		split_array = ft_split(av[i], ' ', &arg_amount);
+		split_array = ft_split_and_count(av[i], ' ', &arg_amount);
 		check_isdigit(split_array, arg_amount);
-		while(split_array[j])
+		while (split_array[j])
 		{
-			input = ft_atoi(split_array[j]);
-			if (!stack_a)
-			{
-				stack_a = new_stack_node(input);
-				if (!stack_a)
-					ft_error(ERROR);
-			}
-			else
-			{
-				new = new_stack_node(input);
-				if (!new)
-					ft_error(ERROR);
-				add_node_back(&stack_a, new);
-			}
+			input = ft_atol(split_array[j]);
+			*stack_a = create_stack(input, *stack_a);
 			j++;
 		}
 		i++;
 		free_split_array(split_array, arg_amount);
 	}
-	check_doubles_input(stack_a);
-	check_min_max(stack_a);
-	stack_count = count_list(stack_a);
-	
-	//printf("stack_count = [%d]\n", stack_count);
-	//
-	//print_stack_list_forward(stack_a, &printf, 'a');
-	//print_stack_list_forward(stack_b, &printf, 'b');
-	//print_stack_list_backward(stack_a, &printf, 'a');
-	//print_stack_list_backward(stack_b, &printf, 'b');
+}
 
+void	sort_stack(t_stack **stack_a, t_stack **stack_b, int stack_count)
+{
 	if (stack_count <= 3)
 	{
-		if (!list_is_sorted(stack_a))
-			sort_mini_stack(&stack_a);
+		if (!list_is_sorted(*stack_a))
+			sort_mini_stack(stack_a);
 	}
 	else if (stack_count <= 5)
 	{
-		if (!list_is_sorted(stack_a))
-			sort_small_stack(&stack_a, &stack_b);
+		if (!list_is_sorted(*stack_a))
+			sort_small_stack(stack_a, stack_b);
 	}
 	else
-		if (!list_is_sorted(stack_a))
-			sort_large_stack(&stack_a, &stack_b, stack_count);
-	
-	//sa(stack_a);
-	//sb(stack_b);
-	//ss(stack_a, stack_b);
-	//pa(stack_a, stack_b);
+		if (!list_is_sorted(*stack_a))
+			sort_large_stack(stack_a, stack_b, stack_count);
+}
 
-	//pb(&stack_a, &stack_b);
-	//pb(&stack_a, &stack_b);
-	//pb(&stack_a, &stack_b);
-	//print_stack_list_forward(stack_a, &printf, 'a');
-	//print_stack_list_forward(stack_b, &printf, 'b');
+int	main(int ac, char **av)
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	int		stack_count;
 
-	//ra(&stack_a, FALSE);
-	//rb(&stack_b, FALSE);
-	//rr(&stack_a, &stack_b);
-	//rra(&stack_a, FALSE);
-	//rrb(&stack_b, FALSE);
-	//rrr(&stack_a, &stack_b);
-
-	//print_stack_list_forward(stack_a, &printf, 'a');
-	//print_stack_list_forward(stack_b, &printf, 'b');
-	//print_stack_list_backward(stack_a, &printf, 'a');
-	//print_stack_list_backward(stack_b, &printf, 'b');
-	
-	
-	//if (list_is_sorted(stack_a))
-	//	return (printf("list is sorted\n"));
-	//return (printf("not sorted or stack_a is empty\n"));
-	
+	stack_a = NULL;
+	stack_b = NULL;
+	if (ac < 2)
+		exit(EXIT_SUCCESS);
+	parse_arguments(ac, av, &stack_a);
+	check_doubles_input(stack_a);
+	check_min_max(stack_a);
+	stack_count = count_list(stack_a);
+	sort_stack(&stack_a, &stack_b, stack_count);
 	free_list(stack_a);
 	free(stack_a);
 	free_list(stack_b);
 	if (stack_b)
 		free(stack_b);
-	//system("leaks push_swap");
-	//exit(0);
+	exit(EXIT_SUCCESS);
 }
