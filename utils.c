@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/29 16:15:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/07 14:39:58 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/13 11:47:20 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,24 @@
 #include <unistd.h>
 #include <limits.h>
 
-#include <stdio.h>
-
 void	ft_error(int error_code)
 {
-	write(2, "Error\n", 6);
-	if (error_code == TEST)
-		printf("test ended in error\n"); //remove printf!
-	exit(1);
+	if (error_code == ERROR)
+		write(STDERR_FILENO, "Error\n", 6);
+	exit(EXIT_FAILURE);
 }
 
 int	list_is_sorted(t_stack *stack)
 {
-	long	int compare1;
-	long	int compare2;
+	long int	compare1;
+	long int	compare2;
 
 	if (!stack)
 		return (FALSE);
 	while (stack->next != NULL)
 	{
 		compare1 = stack->to_sort;
-			stack = stack->next;
+		stack = stack->next;
 		compare2 = stack->to_sort;
 		if (compare1 > compare2)
 			return (FALSE);
@@ -49,10 +46,10 @@ static int	num_is_same(t_stack *lst, long int check)
 	while (lst)
 	{
 		if (lst->to_sort == check)
-			return (1);
+			return (TRUE);
 		lst = lst->next;
 	}
-	return (0);
+	return (FALSE);
 }
 
 void	check_doubles_input(t_stack *stack)

@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/01 09:43:16 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/01 09:44:38 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/13 11:23:58 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_split_array(char **split_array, int arg_amount)
 	int	i;
 
 	i = 0;
-	while(i <= arg_amount)
+	while (i <= arg_amount)
 	{
 		free(split_array[i]);
 		i++;
