@@ -6,14 +6,14 @@
 #    By: lwiedijk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/08/27 11:19:54 by lwiedijk      #+#    #+#                  #
-#    Updated: 2021/10/08 13:59:44 by lwiedijk      ########   odam.nl          #
+#    Updated: 2021/10/13 11:01:49 by lwiedijk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 HEADERS = push_swap.h
-SRCS =	create_stack.c instructions_1.c \
-		instructions_2.c nodes.c \
+SRCS =	create_stack.c a_instructions.c \
+		b_instructions.c nodes.c \
 		sort_small_stack.c utils.c \
 		free.c sort_large_stack.c \
 		simplify_stack_input.c \

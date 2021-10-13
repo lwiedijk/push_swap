@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/29 16:15:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/13 11:47:20 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/13 15:13:29 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
-
-void	ft_error(int error_code)
-{
-	if (error_code == ERROR)
-		write(STDERR_FILENO, "Error\n", 6);
-	exit(EXIT_FAILURE);
-}
 
 int	list_is_sorted(t_stack *stack)
 {
@@ -73,7 +66,7 @@ void	check_isdigit(char **split_array, int arg_amount)
 		j = 0;
 		while (split_array[i][j])
 		{
-			if (!ft_isdigit(split_array[i][j]))
+			if (!ft_isdigit_min(split_array[i][j]))
 				ft_error(ERROR);
 			j++;
 		}
