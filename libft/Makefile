@@ -6,7 +6,7 @@
 #    By: lwiedijk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/10/30 16:06:46 by lwiedijk      #+#    #+#                  #
-#    Updated: 2021/09/01 13:06:17 by lwiedijk      ########   odam.nl          #
+#    Updated: 2021/10/13 13:18:47 by lwiedijk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = 			libft.a
 HEADERS = 		libft.h
 OBJECTS = 		ft_atoi.o			\
+				ft_atol.o			\
 	  			ft_bzero.o			\
 	  			ft_calloc.o			\
 				ft_error.o			\
@@ -22,6 +23,7 @@ OBJECTS = 		ft_atoi.o			\
 	  			ft_isalpha.o		\
 	  			ft_isascii.o		\
 	  			ft_isdigit.o		\
+				ft_isdigit_min.o	\
 	  			ft_isprint.o		\
 				ft_iswhitespace.o	\
 				ft_itoa_base_unsigned.o	\
@@ -38,6 +40,7 @@ OBJECTS = 		ft_atoi.o			\
 	  			ft_putnbr_fd.o		\
 	  			ft_putstr_fd.o		\
 	  			ft_split.o			\
+				ft_split_and_count.o \
 	  			ft_strchr.o			\
 	  			ft_strdup.o			\
 	  			ft_strjoin.o		\
