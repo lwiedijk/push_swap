@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/08 09:40:23 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/12 18:40:29 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/13 09:24:02 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	radix_binary(t_stack **stack_a, t_stack **stack_b,
 		while (node_count < stack_count)
 		{
 			if ((((*stack_a)->index >> i) & 1) == 0)
-				pb(stack_a, stack_b);
+				pb(stack_a, stack_b, *stack_a, *stack_b);
 			else
 				ra(stack_a, FALSE);
 			node_count++;
 		}
 		while (*stack_b)
-			pa(stack_a, stack_b);
+			pa(stack_a, stack_b, *stack_a, *stack_b);
 		i++;
 	}
 }

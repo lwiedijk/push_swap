@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/29 15:56:07 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/12 18:50:56 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/13 09:23:53 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	sort_small_stack(t_stack **stack_a, t_stack **stack_b)
 	{
 		if ((*stack_a)->to_sort < middle_value)
 		{
-			pb(stack_a, stack_b);
+			pb(stack_a, stack_b, *stack_a, *stack_b);
 			i++;
 		}
 		else
@@ -116,11 +116,11 @@ void	sort_small_stack(t_stack **stack_a, t_stack **stack_b)
 	}
 	sort_mini_stack(stack_a);
 	if ((*stack_b)->to_sort > (*stack_b)->next->to_sort)
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, *stack_a, *stack_b);
 	else
 	{
 		rb(stack_b, FALSE);
-		pa(stack_a, stack_b);
+		pa(stack_a, stack_b, *stack_a, *stack_b);
 	}
-	pa(stack_a, stack_b);
+	pa(stack_a, stack_b, *stack_a, *stack_b);
 }
