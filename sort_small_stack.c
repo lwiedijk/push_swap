@@ -6,15 +6,14 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/29 15:56:07 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/13 09:23:53 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/14 11:29:28 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include <unistd.h>
-#include <stdio.h>
+#include "push_swap.h"
 
-int	top_of_mini_stack(t_stack *stack_a)
+static int	top_of_mini_stack(t_stack *stack_a)
 {
 	long int	compare1;
 	long int	compare2;
@@ -43,33 +42,7 @@ int	top_of_mini_stack(t_stack *stack_a)
 	}
 }
 
-void	sort_mini_stack(t_stack **stack_a)
-{
-	int	stack_top;
-
-	if (!*stack_a || (*stack_a)->next == NULL)
-		return ;
-	stack_top = top_of_mini_stack(*stack_a);
-	if (stack_top == DONT_SORT)
-		return ;
-	if (stack_top == HIGHEST)
-	{
-		ra(stack_a, FALSE);
-		if (!list_is_sorted(*stack_a))
-			sa(*stack_a);
-	}
-	if (stack_top == LOWEST)
-	{
-		sa(*stack_a);
-		ra(stack_a, FALSE);
-	}
-	if (stack_top == MIDDEL_LOW)
-		sa(*stack_a);
-	if (stack_top == MIDDEL_HIGH)
-		rra(stack_a, FALSE);
-}
-
-void	find_middel_value(t_stack *stack_a, int *middle_value)
+static void	find_middel_value(t_stack *stack_a, int *middle_value)
 {
 	t_stack	*temp_a;
 	t_stack	*constant_stack_a;
@@ -95,6 +68,32 @@ void	find_middel_value(t_stack *stack_a, int *middle_value)
 		stack_a = stack_a->next;
 		i++;
 	}
+}
+
+void	sort_mini_stack(t_stack **stack_a)
+{
+	int	stack_top;
+
+	if (!*stack_a || (*stack_a)->next == NULL)
+		return ;
+	stack_top = top_of_mini_stack(*stack_a);
+	if (stack_top == DONT_SORT)
+		return ;
+	if (stack_top == HIGHEST)
+	{
+		ra(stack_a, FALSE);
+		if (!list_is_sorted(*stack_a))
+			sa(*stack_a);
+	}
+	if (stack_top == LOWEST)
+	{
+		sa(*stack_a);
+		ra(stack_a, FALSE);
+	}
+	if (stack_top == MIDDEL_LOW)
+		sa(*stack_a);
+	if (stack_top == MIDDEL_HIGH)
+		rra(stack_a, FALSE);
 }
 
 void	sort_small_stack(t_stack **stack_a, t_stack **stack_b)

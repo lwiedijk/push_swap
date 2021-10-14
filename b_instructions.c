@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   instructions_1.c                                   :+:    :+:            */
+/*   b_instructions.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 14:36:02 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/13 09:56:24 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/14 09:30:36 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include <unistd.h>
-#include <stdio.h>
+#include "push_swap.h"
 
 void	rb(t_stack **stack_b, int rr_flag)
 {

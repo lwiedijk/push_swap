@@ -6,14 +6,15 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/08 13:57:42 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/12 18:31:55 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/14 11:32:43 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include <stdlib.h>
+#include <limits.h>
+#include "push_swap.h"
 
-void	get_index_position(t_stack *stack_a, t_stack *stack_array,
+static void	get_index_position(t_stack *stack_a, t_stack *stack_array,
 							int stack_count)
 {
 	t_stack	*temp_head;
@@ -36,7 +37,7 @@ void	get_index_position(t_stack *stack_a, t_stack *stack_array,
 	}
 }
 
-void	sort_stack_array(t_stack *stack_a, t_stack *stack_array,
+static void	sort_stack_array(t_stack *stack_a, t_stack *stack_array,
 							int stack_count)
 {
 	long int	temp_num;
@@ -63,7 +64,7 @@ void	sort_stack_array(t_stack *stack_a, t_stack *stack_array,
 	get_index_position(stack_a, stack_array, stack_count);
 }
 
-void	put_stack_to_array(t_stack *stack_a, int stack_count)
+static void	put_stack_to_array(t_stack *stack_a, int stack_count)
 {
 	t_stack	*temp_head;
 	t_stack	*stack_array;

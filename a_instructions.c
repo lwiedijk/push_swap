@@ -6,13 +6,12 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/13 09:31:11 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/13 11:17:31 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/14 09:30:23 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include <unistd.h>
-#include <stdio.h>
+#include "push_swap.h"
 
 void	ra(t_stack **stack_a, int rr_flag)
 {

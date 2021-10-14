@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/27 09:27:21 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/13 15:32:35 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/14 11:32:58 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,25 @@ typedef enum e_stack_position
 	HIGHEST,
 }	t_stack_position;
 
-/* create_stack.c */
-void	ft_error(int error_code);
-void	parse_arguments(int ac, char**av, t_stack **stack_a);
-t_stack	*create_stack(long int input, t_stack *stack_a);
+/* sort_stack.c */
+int		list_is_sorted(t_stack *stack);
 void	sort_stack(t_stack **stack_a, t_stack **stack_b, int stack_count);
 
-/* utils.c */
-int		list_is_sorted(t_stack *stack);
+/* sort_small_stack.c */
+void	sort_mini_stack(t_stack **stack_a);
+void	sort_small_stack(t_stack **stack_a, t_stack **stack_b);
+
+/* sort_large_stack.c */
+void	sort_large_stack(t_stack **stack_a, t_stack **stack_b, int stack_count);
+
+/* simplify_stack_input.c */
+void	simplify_stack_input(t_stack *stack_a, int stack_count);
+
+/* check_input.c */
+void	ft_error(int error_code);
 void	check_doubles_input(t_stack *stack_a);
 void	check_isdigit(char **split_array, int arg_amount);
-void	check_min_max(t_stack *stack);
+void	check_min_max(t_stack *stack, int stack_count);
 
 /* free.c */
 void	free_list(t_stack *lst);
@@ -76,22 +84,5 @@ void	pa(t_stack **stack_a, t_stack **stack_b,
 void	rb(t_stack **stack_b, int rr_flag);
 void	pb(t_stack **stack_a, t_stack **stack_b,
 			t_stack *temp_a, t_stack *temp_b);
-
-/* sort_small_stack.c */
-int		top_of_mini_stack(t_stack *stack_a);
-void	sort_mini_stack(t_stack **stack_a);
-void	find_middel_value(t_stack *stack_a, int *middle_value);
-void	sort_small_stack(t_stack **stack_a, t_stack **stack_b);
-
-/* sort_large_stack.c */
-void	sort_large_stack(t_stack **stack_a, t_stack **stack_b, int stack_count);
-
-/* simplify_stack_input.c */
-void	simplify_stack_input(t_stack *stack_a, int stack_count);
-void	put_stack_to_array(t_stack *stack_a, int stack_count);
-void	sort_stack_array(t_stack *stack_a,
-			t_stack *stack_array, int stack_count);
-void	get_index_position(t_stack *stack_a,
-			t_stack *stack_array, int stack_count);
 
 #endif

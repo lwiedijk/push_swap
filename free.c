@@ -6,12 +6,12 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/01 09:43:16 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/13 11:23:58 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/14 09:30:10 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include <stdlib.h>
+#include "push_swap.h"
 
 void	free_list(t_stack *lst)
 {

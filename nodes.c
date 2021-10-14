@@ -6,12 +6,11 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/02 15:00:16 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/13 11:26:52 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/14 09:31:12 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "push_swap.h"
 
 t_stack	*new_stack_node(long int input)
