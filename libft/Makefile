@@ -6,7 +6,7 @@
 #    By: lwiedijk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/10/30 16:06:46 by lwiedijk      #+#    #+#                  #
-#    Updated: 2021/10/13 13:18:47 by lwiedijk      ########   odam.nl          #
+#    Updated: 2021/10/14 14:36:58 by lwiedijk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,89 +14,95 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = 			libft.a
 HEADERS = 		libft.h
-OBJECTS = 		ft_atoi.o			\
-				ft_atol.o			\
-	  			ft_bzero.o			\
-	  			ft_calloc.o			\
-				ft_error.o			\
-	  			ft_isalnum.o		\
-	  			ft_isalpha.o		\
-	  			ft_isascii.o		\
-	  			ft_isdigit.o		\
-				ft_isdigit_min.o	\
-	  			ft_isprint.o		\
-				ft_iswhitespace.o	\
-				ft_itoa_base_unsigned.o	\
-				ft_itoa_base.o		\
-	  			ft_itoa.o			\
-	  			ft_memccpy.o		\
-	  			ft_memchr.o			\
-	  			ft_memcmp.o			\
-	  			ft_memcpy.o			\
-	  			ft_memmove.o		\
-	  			ft_memset.o			\
-	  			ft_putchar_fd.o		\
-	  			ft_putendl_fd.o		\
-	  			ft_putnbr_fd.o		\
-	  			ft_putstr_fd.o		\
-	  			ft_split.o			\
-				ft_split_and_count.o \
-	  			ft_strchr.o			\
-	  			ft_strdup.o			\
-	  			ft_strjoin.o		\
-	  			ft_strlcat.o		\
-	  			ft_strlcpy.o		\
-	  			ft_strlen.o			\
-	  			ft_strmapi.o		\
-	  			ft_strncmp.o		\
-	  			ft_strnstr.o		\
-	  			ft_strrchr.o		\
-	  			ft_strtrim.o		\
-	  			ft_substr.o			\
-				ft_tolower.o		\
-				ft_toupper.o		\
-				ft_numlen_base.o	\
-				ft_power.o			\
-				ft_putchar.o		\
-				ft_putnbr.o			\
-				ft_putstr.o			\
-				ft_strcat.o			\
-				ft_strjoin_free.o	\
-				ft_strcmp.o			\
-				ft_strcpy.o			\
+SRCS = 			ft_atoi.c			\
+				ft_atol.c			\
+	  			ft_bzero.c			\
+	  			ft_calloc.c			\
+				ft_error.c			\
+	  			ft_isalnum.c		\
+	  			ft_isalpha.c		\
+	  			ft_isascii.c		\
+	  			ft_isdigit.c		\
+				ft_isdigit_min.c	\
+	  			ft_isprint.c		\
+				ft_iswhitespace.c	\
+				ft_itoa_base_unsigned.c	\
+				ft_itoa_base.c		\
+	  			ft_itoa.c			\
+	  			ft_memccpy.c		\
+	  			ft_memchr.c			\
+	  			ft_memcmp.c			\
+	  			ft_memcpy.c			\
+	  			ft_memmove.c		\
+	  			ft_memset.c			\
+	  			ft_putchar_fd.c		\
+	  			ft_putendl_fd.c		\
+	  			ft_putnbr_fd.c		\
+	  			ft_putstr_fd.c		\
+	  			ft_split.c			\
+				ft_split_and_count.c \
+	  			ft_strchr.c			\
+	  			ft_strdup.c			\
+	  			ft_strjoin.c		\
+	  			ft_strlcat.c		\
+	  			ft_strlcpy.c		\
+	  			ft_strlen.c			\
+	  			ft_strmapi.c		\
+	  			ft_strncmp.c		\
+	  			ft_strnstr.c		\
+	  			ft_strrchr.c		\
+	  			ft_strtrim.c		\
+	  			ft_substr.c			\
+				ft_tolower.c		\
+				ft_toupper.c		\
+				ft_numlen_base.c	\
+				ft_power.c			\
+				ft_putchar.c		\
+				ft_putnbr.c			\
+				ft_putstr.c			\
+				ft_strcat.c			\
+				ft_strjoin_free.c	\
+				ft_strcmp.c			\
+				ft_strcpy.c			\
 
-BONUS_FILES	=	ft_lstadd_front.o	\
-				ft_lstadd_back.o	\
-				ft_lstclear.o		\
-				ft_lstdelone.o		\
-				ft_lstiter.o		\
-				ft_lstlast.o		\
-				ft_lstmap.o			\
-				ft_lstnew.o			\
-				ft_lstsize.o		\
+BONUS_FILES	=	ft_lstadd_front.c	\
+				ft_lstadd_back.c	\
+				ft_lstclear.c		\
+				ft_lstdelone.c		\
+				ft_lstiter.c		\
+				ft_lstlast.c		\
+				ft_lstmap.c			\
+				ft_lstnew.c			\
+				ft_lstsize.c		\
+
+OBJS_DIR = objs/
+_OBJS = $(SRCS:.c=.o)
+_BONUS_OBJS = $(BONUS_FILES:.c=.o)
 
 ifdef WITH_BONUS
-OBJ_FILES = $(OBJECTS) $(BONUS_FILES)
+OBJS = $(addprefix $(OBJS_DIR), $(_OBJS) $(_BONUS_OBJS))
 else
-OBJ_FILES = $(OBJECTS)
+OBJS = $(addprefix $(OBJS_DIR), $(_OBJS))
 endif
 
 all: $(NAME)
 
-$(NAME): $(OBJ_FILES)
-	ar -rc $(NAME) $(OBJ_FILES)
+$(NAME): $(OBJS)
+	ar -rc $(NAME) $(OBJS)
 
-%.o: %.c $(HEADERS)
-	gcc -c $(CFLAGS) -o $@ $<
+$(OBJS_DIR)%.o: %.c $(HEADERS)
+	@mkdir -p $(@D)
+	$(CC) -c $(CFLAGS) -o $@ $<
 
 bonus:
 	$(MAKE) WITH_BONUS=1 all
 
 clean:
-	rm -f $(OBJECTS) $(BONUS_FILES)
+	rm -f $(addprefix $(OBJS_DIR), $(_OBJS) $(_BONUS_OBJS))
 
 fclean: clean
 	rm -f $(NAME)
+	rmdir -p $(OBJS_DIR)
 
 re:
 	$(MAKE) fclean
