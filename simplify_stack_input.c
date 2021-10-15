@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/08 13:57:42 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/14 11:32:43 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/15 16:23:59 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	put_stack_to_array(t_stack *stack_a, int stack_count)
 	temp_head = stack_a;
 	stack_array = (t_stack *)malloc(sizeof(t_stack) * stack_count);
 	if (!stack_array)
-		ft_error(ERROR);
+		ft_error(ERROR, stack_a);
 	i = 0;
 	while (i < stack_count)
 	{

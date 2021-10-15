@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/29 16:15:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/14 11:10:52 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/15 16:23:24 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 #include "push_swap.h"
 #include "libft/libft.h"
 
-void	ft_error(int error_code)
+void	ft_error(int error_code, t_stack *stack_a)
 {
 	if (error_code == ERROR)
 		write(STDERR_FILENO, "Error\n", 6);
+	if (stack_a)
+		free_list(stack_a);
 	exit(EXIT_FAILURE);
 }
 
@@ -36,15 +38,17 @@ static int	num_is_same(t_stack *lst, long int check)
 
 void	check_doubles_input(t_stack *stack)
 {
+	if (!stack)
+		exit(EXIT_SUCCESS);
 	while (stack->next != NULL)
 	{
 		if (num_is_same(stack->next, stack->to_sort))
-			ft_error(ERROR);
+			ft_error(ERROR, stack);
 		stack = stack->next;
 	}
 }
 
-void	check_isdigit(char **split_array, int arg_amount)
+void	check_isdigit(char **split_array, int arg_amount, t_stack *stack_a)
 {
 	int	i;
 	int	j;
@@ -56,7 +60,13 @@ void	check_isdigit(char **split_array, int arg_amount)
 		while (split_array[i][j])
 		{
 			if (!ft_isdigit_min(split_array[i][j]))
-				ft_error(ERROR);
+				ft_error(ERROR, stack_a);
+			else if (ft_isdigit_min(split_array[i][j])
+						&& split_array[i][j + 1] == '-')
+				ft_error(ERROR, stack_a);
+			else if (split_array[i][j] == '-'
+						&& !ft_isdigit_min(split_array[i][j + 1]))
+				ft_error(ERROR, stack_a);
 			j++;
 		}
 		i++;
@@ -68,9 +78,9 @@ void	check_min_max(t_stack *stack, int stack_count)
 	while (stack)
 	{
 		if (stack->to_sort > INT_MAX || stack->to_sort < INT_MIN)
-			ft_error(ERROR);
+			ft_error(ERROR, stack);
 		stack = stack->next;
 	}
 	if (stack_count < 0)
-		ft_error(ERROR);
+		ft_error(ERROR, stack);
 }
