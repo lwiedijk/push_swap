@@ -6,7 +6,7 @@
 #    By: lwiedijk <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/10/30 16:06:46 by lwiedijk      #+#    #+#                  #
-#    Updated: 2021/10/14 14:36:58 by lwiedijk      ########   odam.nl          #
+#    Updated: 2021/10/19 14:55:40 by lwiedijk      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,6 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
-	rmdir -p $(OBJS_DIR)
 
 re:
 	$(MAKE) fclean
