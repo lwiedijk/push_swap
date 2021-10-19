@@ -6,11 +6,11 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/14 09:23:36 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/14 09:31:31 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/19 14:21:05 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stddef.h>
 #include "push_swap.h"
 
 int	list_is_sorted(t_stack *stack)
