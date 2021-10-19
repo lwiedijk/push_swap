@@ -6,7 +6,7 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/29 16:15:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/15 16:23:24 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/19 09:17:54 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 #include "push_swap.h"
 #include "libft/libft.h"
 
-void	ft_error(int error_code, t_stack *stack_a)
+void	ft_error(t_stack *stack_a)
 {
-	if (error_code == ERROR)
-		write(STDERR_FILENO, "Error\n", 6);
+	write(STDERR_FILENO, "Error\n", 6);
 	if (stack_a)
 		free_list(stack_a);
 	exit(EXIT_FAILURE);
@@ -43,12 +42,12 @@ void	check_doubles_input(t_stack *stack)
 	while (stack->next != NULL)
 	{
 		if (num_is_same(stack->next, stack->to_sort))
-			ft_error(ERROR, stack);
+			ft_error(stack);
 		stack = stack->next;
 	}
 }
 
-void	check_isdigit(char **split_array, int arg_amount, t_stack *stack_a)
+int	check_isdigit(char **split_array, int arg_amount)
 {
 	int	i;
 	int	j;
@@ -60,17 +59,18 @@ void	check_isdigit(char **split_array, int arg_amount, t_stack *stack_a)
 		while (split_array[i][j])
 		{
 			if (!ft_isdigit_min(split_array[i][j]))
-				ft_error(ERROR, stack_a);
+				return (ERROR);
 			else if (ft_isdigit_min(split_array[i][j])
 						&& split_array[i][j + 1] == '-')
-				ft_error(ERROR, stack_a);
+				return (ERROR);
 			else if (split_array[i][j] == '-'
 						&& !ft_isdigit_min(split_array[i][j + 1]))
-				ft_error(ERROR, stack_a);
+				return (ERROR);
 			j++;
 		}
 		i++;
 	}
+	return (OK);
 }
 
 void	check_min_max(t_stack *stack, int stack_count)
@@ -78,9 +78,9 @@ void	check_min_max(t_stack *stack, int stack_count)
 	while (stack)
 	{
 		if (stack->to_sort > INT_MAX || stack->to_sort < INT_MIN)
-			ft_error(ERROR, stack);
+			ft_error(stack);
 		stack = stack->next;
 	}
 	if (stack_count < 0)
-		ft_error(ERROR, stack);
+		ft_error(stack);
 }

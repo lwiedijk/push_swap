@@ -6,11 +6,12 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/26 13:17:40 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/15 16:24:38 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/19 09:17:22 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "push_swap.h"
 #include "libft/libft.h"
 
@@ -22,16 +23,26 @@ static t_stack	*create_stack(long int input, t_stack *stack_a)
 	{
 		stack_a = new_stack_node(input);
 		if (!stack_a)
-			ft_error(ERROR, stack_a);
+			ft_error(stack_a);
 	}
 	else
 	{
 		new = new_stack_node(input);
 		if (!new)
-			ft_error(ERROR, stack_a);
+			ft_error(stack_a);
 		add_node_back(&stack_a, new);
 	}
 	return (stack_a);
+}
+
+static void	parse_error(char **split_array, int arg_amount, t_stack *stack_a)
+{
+	write(STDERR_FILENO, "Error\n", 6);
+	if (stack_a)
+		free_list(stack_a);
+	if (split_array)
+		free_split_array(split_array, arg_amount);
+	exit(EXIT_FAILURE);
 }
 
 static void	parse_arguments(int ac, char**av, t_stack **stack_a)
@@ -47,7 +58,10 @@ static void	parse_arguments(int ac, char**av, t_stack **stack_a)
 	{
 		j = 0;
 		split_array = ft_split_and_count(av[i], ' ', &arg_amount);
-		check_isdigit(split_array, arg_amount, *stack_a);
+		if (!split_array)
+			ft_error(*stack_a);
+		if (check_isdigit(split_array, arg_amount))
+			parse_error(split_array, arg_amount, *stack_a);
 		while (split_array[j])
 		{
 			input = ft_atol(split_array[j]);
