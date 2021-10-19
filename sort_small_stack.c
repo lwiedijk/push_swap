@@ -6,11 +6,11 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/29 15:56:07 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/14 11:29:28 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/19 14:21:35 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stddef.h>
 #include "push_swap.h"
 
 static int	top_of_mini_stack(t_stack *stack_a)

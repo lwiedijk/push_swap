@@ -6,12 +6,11 @@
 /*   By: lwiedijk <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/08 13:57:42 by lwiedijk      #+#    #+#                 */
-/*   Updated: 2021/10/19 09:19:12 by lwiedijk      ########   odam.nl         */
+/*   Updated: 2021/10/19 14:22:06 by lwiedijk      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <limits.h>
 #include "push_swap.h"
 
 static void	get_index_position(t_stack *stack_a, t_stack *stack_array,
